@@ -4,8 +4,16 @@ package metro;
 
 public class Station {
     
+    //Identifiant de la station
+    private int id;
+    
+    //Nom de la station
     private String nom;
+    
+    //Booléen indiquant si un incident s'est produit sur la station ou non
     private boolean incident;
+    
+    //Coordonnées de la station
     private int x;
     private int y;
     
@@ -38,13 +46,5 @@ public class Station {
     
     public void setIncident(boolean incident){
         this.incident=incident;
-    }
-    
-    public void setX(int x){
-        this.x=x;
-    }
-    
-    public void setY(int y){
-        this.y=y;
     }
 }
