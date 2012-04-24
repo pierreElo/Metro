@@ -1,50 +1,49 @@
-
 package metro;
 
-
+/*
+ * Classe représentant une station
+ */
 public class Station {
-    
+
+    //Identifiant de la station
+    private int id;
+    //Nom de la station
     private String nom;
+    //Booléen indiquant si un incident s'est produit à la station ou non
     private boolean incident;
+    //Coordonnées de la station
     private int x;
     private int y;
-    
-    public Station (String nom, int x, int y){
-        this.nom=nom;
-        this.incident=false;
-        this.x=x;
-        this.y=y;
+
+    public Station(int id, String nom, int x, int y) {
+        this.id = id;
+        this.nom = nom;
+        this.incident = false;
+        this.x = x;
+        this.y = y;
     }
-    
-    public String getNom(){
+
+    public String getNom() {
         return nom;
     }
-    
-    public boolean getIncident(){
+
+    public boolean getIncident() {
         return incident;
     }
-    
-    public int getX(){
+
+    public int getX() {
         return x;
     }
-    
-    public int getY(){
+
+    public int getY() {
         return y;
     }
-    
-    public void setNom(String nom){
-        this.nom=nom;
+
+    public int getId() {
+        return id;
     }
-    
-    public void setIncident(boolean incident){
-        this.incident=incident;
-    }
-    
-    public void setX(int x){
-        this.x=x;
-    }
-    
-    public void setY(int y){
-        this.y=y;
+
+    public void setIncident(boolean incident) {
+        this.incident = incident;
     }
 }
