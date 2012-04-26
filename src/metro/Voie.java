@@ -11,6 +11,8 @@ public class Voie {
     private Station stationAmont;
     //Station en aval
     private Station stationAval;
+    //temsp d'arret a la station
+    private int tempsArret;
     //Booléen indiquant si un incident s'est produit sur la voie ou non
     private boolean incident;
 
