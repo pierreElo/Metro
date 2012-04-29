@@ -36,6 +36,11 @@ public class Main {
         Voie voie6 = new Voie(6, station7, station8);
         Voie voie7 = new Voie(7, station8, station9);
         Voie voie8 = new Voie(8, station9, station10);
+        ligne2.ajouterVoie(voie4);
+        ligne2.ajouterVoie(voie5);
+        ligne2.ajouterVoie(voie6);
+        ligne2.ajouterVoie(voie7);
+        ligne2.ajouterVoie(voie8);
         metro.ajouterLigne(ligne2);
         
         for (Map.Entry<Integer, Ligne> en : metro.getLignes().entrySet()) {
