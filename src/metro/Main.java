@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         Metro metro = new Metro();
+        Utilisateur user = new Utilisateur("Patator","password");
         
         Ligne ligne1 = new Ligne(1, "Ligne 1");
         Station station1 = new Station(1, "La Défense", 10, 20);
@@ -34,10 +35,21 @@ public class Main {
         Voie voie6 = new Voie(6, station7, station8);
         Voie voie7 = new Voie(7, station8, station9);
         Voie voie8 = new Voie(8, station9, station10);
+        ligne2.ajouterVoie(voie4);
+        ligne2.ajouterVoie(voie5);
+        ligne2.ajouterVoie(voie6);
+        ligne2.ajouterVoie(voie7);
+        ligne2.ajouterVoie(voie8);
         metro.ajouterLigne(ligne2);
 
         //Ligne ligne3 = new Ligne(3, "ligne3");
 
-        System.out.println("Welcome to Paris !");
+        System.out.println("Welcome to Paris!");
+        
+        metro.afficherTabLignes();
+        metro.afficherDetailsLignes();
+        
+     //   user.emplacementCourant();
+        
     }
 }
