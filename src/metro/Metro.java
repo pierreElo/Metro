@@ -10,6 +10,10 @@ public class Metro {
     public Metro() {
         tabLignes = new HashMap<Integer, Ligne>();
     }
+
+    public HashMap<Integer, Ligne> getLignes() {
+        return tabLignes;
+    }
     
     public void ajouterLigne(Ligne l){
         tabLignes.put(l.getId(), l);
