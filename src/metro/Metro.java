@@ -12,6 +12,10 @@ public class Metro {
     public Metro() {
         tabLignes = new HashMap<Integer, Ligne>();
     }
+
+    public HashMap<Integer, Ligne> getLignes() {
+        return tabLignes;
+    }
     
     public HashMap getTabLignes(){
         return this.tabLignes;

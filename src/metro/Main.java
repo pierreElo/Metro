@@ -1,5 +1,7 @@
 package metro;
 
+import java.util.Map;
+
 /**
  *
  * @author David Rouyer
@@ -41,6 +43,11 @@ public class Main {
         ligne2.ajouterVoie(voie7);
         ligne2.ajouterVoie(voie8);
         metro.ajouterLigne(ligne2);
+        
+        for (Map.Entry<Integer, Ligne> en : metro.getLignes().entrySet()) {
+            Ligne ligne = en.getValue();
+            System.out.println(ligne.getNom());
+        }
 
         //Ligne ligne3 = new Ligne(3, "ligne3");
 
