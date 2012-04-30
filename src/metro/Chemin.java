@@ -6,7 +6,8 @@ import java.util.*;
 
 public class Chemin {
     private int coutDistance;
-    //liste de tous les chemins stockés
+    
+    //liste de toutes les stations stockées 
     private List <Station> parcours;
 
     public Chemin(int coutDistance) {
