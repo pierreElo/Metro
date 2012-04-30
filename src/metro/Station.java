@@ -9,6 +9,8 @@ public class Station {
     private int id;
     //Nom de la station
     private String nom;
+    // temps d'arret
+    private int temps;
     //Booléen indiquant si un incident s'est produit à la station ou non
     private boolean incident;
     //Coordonnées de la station
@@ -29,6 +31,34 @@ public class Station {
 
     public boolean getIncident() {
         return incident;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setTemps(int temps) {
+        this.temps = temps;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public boolean isIncident() {
+        return incident;
+    }
+
+    public int getTemps() {
+        return temps;
     }
 
     public int getX() {

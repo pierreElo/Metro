@@ -54,6 +54,7 @@ public class Utilisateur {
         String login = sc.nextLine();
         System.out.println("Veuillez entrer votre mot de passe : ");
         String mdp = sc.nextLine();
+        System.out.println("le chemin min est : ");
         
     }
     
