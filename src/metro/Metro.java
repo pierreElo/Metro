@@ -1,8 +1,8 @@
 
 package metro;
 
-import java.util.Iterator;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class Metro {
