@@ -4,17 +4,17 @@ package metro;
  * Classe représentant une station
  */
 public class Station {
-    
+
     //Identifiant de la station
     private int id;
-    
+
     //Nom de la station
     private String nom;
     
     //Temps d'arrêt à la station
     private int tempsArret;
     
-    //Booléen indiquant si un incident s'est produit sur la station ou non
+    //Booléen indiquant si un incident s'est produit à la station ou non
     private boolean incident;
     
     //Coordonnées de la station
