@@ -38,6 +38,10 @@ public class Station {
         return incident;
     }
 
+    public boolean isIncident() {
+        return incident;
+    }
+    
     public int getX() {
         return x;
     }

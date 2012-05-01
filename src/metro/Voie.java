@@ -11,7 +11,7 @@ public class Voie {
     private Station stationAmont;
     //Station en aval
     private Station stationAval;
-    //Temps de parcours de la voie
+    //Temps de parcours entre les deux stations
     private int tempsParcours;
     //Booléen indiquant si un incident s'est produit sur la voie ou non
     private boolean incident;
@@ -46,5 +46,5 @@ public class Voie {
 
     public void setIncident(boolean incident) {
         this.incident = incident;
-    }
+    } 
 }

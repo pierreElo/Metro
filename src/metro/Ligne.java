@@ -13,7 +13,7 @@ public class Ligne {
     private String nom;
     //Liste des stations
     private ArrayList<Voie> listeVoies;
-
+    
     public Ligne(int id, String nom) {
         this.id = id;
         this.nom = nom;
@@ -28,10 +28,22 @@ public class Ligne {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setListeVoies(ArrayList<Voie> listeVoies) {
+        this.listeVoies = listeVoies;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public ArrayList<Voie> getListeVoies() {
         return listeVoies;
     }
-    
+
     public void ajouterVoie(Voie v){
         listeVoies.add(v);
     }

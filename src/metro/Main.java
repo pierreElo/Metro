@@ -1,16 +1,57 @@
 package metro;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  *
  * @author David Rouyer
  */
 public class Main {
-
+    
+    //Cette méthode n'a rien à faire dans le main
+    //affiche un chemin
+    public static void afficherChemin(List<Station> liste){
+        if((liste==null)||(liste.size()==0)){
+            System.out.print("Itinéraire impossible.\n");
+        }
+        else{
+                for(Station station : liste){
+                    if(station!=null){
+                        System.out.print(station.getNom()+", ");
+                    }
+                }
+            }  
+    }
+    
+    //Cette méthode n'a rien à faire dans le main
+    //affiche la liste de tous les chemins
+    public static void afficherListesChemins(List<Chemin> liste){
+         System.out.println("\nListe chemins : ");
+        if((liste==null) || (liste.size()==0)){
+            System.out.print("vide.\n");
+        }
+        else{
+                for(Chemin ch : liste){
+                    if(ch!=null){
+                        System.out.print("     " + ch.getCoutDistance()+", ");
+                        Main.afficherChemin(ch.getParcours());
+                        System.out.println("");
+                    }
+                }
+        }
+    }
+    
+ 
     public static void main(String[] args) {
         Metro metro = new Metro();
         Utilisateur user = new Utilisateur("Patator","password");
+        Scanner sc = new Scanner(System.in);
+        Chemin chemin = new Chemin(0);
+        Station depart;
+        Station arrivee;
+        //CheminMinStation algoMin = new CheminMinStation(metro);
         
         Ligne ligne1 = new Ligne(1, "Ligne 1");
         Station station1 = new Station(1, "La Défense", 10, 20, 5);
@@ -71,7 +112,13 @@ public class Main {
         metro.afficherTabLignes();
         metro.afficherDetailsLignes();
         
-     //   user.emplacementCourant();
+        //user.emplacementCourant();
         
+        //a refaire selon les coordonnées entrées
+        depart=station1;
+        arrivee=station2;
+        
+        //chemin=CheminMinStation.algoRecherche(depart, arrivee);
+        //afficherChemin(chemin);
     }
 }
