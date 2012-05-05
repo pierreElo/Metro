@@ -102,7 +102,7 @@ public class Main {
         ligne3.ajouterVoie(voie13);
         metro.ajouterLigne(ligne3);
         
-        for (Map.Entry<Integer, Ligne> en : metro.getLignes().entrySet()) {
+        for (Map.Entry<Integer, Ligne> en : metro.getTabLignes().entrySet()) {
             Ligne ligne = en.getValue();
             System.out.println(ligne.getNom());
         }
@@ -120,5 +120,10 @@ public class Main {
         
         //chemin=CheminMinStation.algoRecherche(depart, arrivee);
         //afficherChemin(chemin);
+        
+        Station dep = station1;
+        Station arr = station4;
+        AlgorithmeBellman a = new AlgorithmeBellman(dep, arr, metro);
+        a.resoudre();
     }
 }

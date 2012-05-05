@@ -42,10 +42,6 @@ public class Metro {
         }
         return v;
  }
-    public HashMap<Integer, Ligne> getLignes() {
-        return tabLignes;
-    }
-    
         
     /**
      * Affiche seulement la liste des lignes, sans les details

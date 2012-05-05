@@ -12,6 +12,6 @@ public class MetroTest extends TestCase{
         Metro metro = new Metro();
         Ligne ligne1 = new Ligne(1, "Ligne 1");
         metro.ajouterLigne(ligne1);
-        assertEquals(ligne1,metro.getLignes().get(1));
+        assertEquals(ligne1,metro.getTabLignes().get(1));
     }
 }
