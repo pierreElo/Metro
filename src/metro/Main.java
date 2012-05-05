@@ -112,7 +112,7 @@ public class Main {
         metro.afficherTabLignes();
         metro.afficherDetailsLignes();
         
-        //user.emplacementCourant();
+        user.emplacementCourant();
         
         //a refaire selon les coordonnées entrées
         depart=station1;
@@ -120,5 +120,7 @@ public class Main {
         
         //chemin=CheminMinStation.algoRecherche(depart, arrivee);
         //afficherChemin(chemin);
+        
+        user.stationPlusProche(metro);
     }
 }
