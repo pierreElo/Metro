@@ -4,13 +4,13 @@ package metro;
 import java.util.ArrayList;
 
 /**
- *
+ *Algorithme de recherche du chemin passant par le moins de stations
  * @author Elodie 
  */
 
 public class CheminMinStation{
-  //  private static Station stationActuelle;
-//  private int coutDistance;
+    //private static Station stationActuelle;
+    //private int coutDistance;
     //liste de tous les chemins stockés
     private final Metro metro;
     private static ArrayList <Chemin> cheminsPossibles;
@@ -23,21 +23,30 @@ public class CheminMinStation{
         this.coutTotal=0;
     }
     
-    public static ArrayList<Station> getVoisins(Station station){
-        System.out.println("get voisins");
-        System.out.println(voies.size());
-        ArrayList<Station> voisins = new ArrayList();
-        for(int i=0; i<voies.size(); i++){
-            System.out.println("for");
-            if(voies.get(i).getStationAval().equals(station)){
-                System.out.println("1");
-                voisins.add(voies.get(i).getStationAval());
+    public Metro getMetro() {
+        return metro;
+    }
+    
+    /**
+     * méthode qui retourne une liste des stations voisines d'une station donnée
+     * @param station
+     * @return 
+     */
+    public ArrayList<Station> getVoisins(Station station){  
+        
+        ArrayList<Station> voisins = new ArrayList();  
+        
+        for(int i=0; i<this.getMetro().getAllVoie().size(); i++){ 
+            if(this.getMetro().getAllVoie().get(i).getStationAval().equals(station)){
+                voisins.add(this.getMetro().getAllVoie().get(i).getStationAmont());
             }
-            else if (voies.get(i).getStationAmont().equals(station)) {
-                System.out.println("2");
-                voisins.add(voies.get(i).getStationAmont());
+            else if (this.getMetro().getAllVoie().get(i).getStationAmont().equals(station)) {
+                voisins.add(this.getMetro().getAllVoie().get(i).getStationAval());
             }
         }
+        
         return voisins;
     }
+    
+    
 }
