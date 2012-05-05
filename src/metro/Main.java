@@ -122,5 +122,6 @@ public class Main {
         //afficherChemin(chemin);
         
         user.stationPlusProche(metro);
+        //user.troisPlusProches(metro);
     }
 }
