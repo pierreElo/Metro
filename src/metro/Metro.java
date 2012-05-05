@@ -1,26 +1,19 @@
 
 package metro;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
-import java.util.Iterator;
-import java.util.*;
 import java.util.Map.Entry;
-
 
 public class Metro {
 
     private HashMap<Integer,Ligne> tabLignes;
-
     
     public Metro() {
         this.tabLignes = new HashMap<Integer, Ligne>();
     }
-
 
     public void ajouterLigne(Ligne l){
         tabLignes.put(l.getId(), l);

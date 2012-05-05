@@ -1,8 +1,8 @@
 
 package metro;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Chemin {
     private int coutDistance;
@@ -30,7 +30,4 @@ public class Chemin {
     public void setParcours(List<Station> parcours) {
         this.parcours = parcours;
     }
-
-    
-    
 }
