@@ -51,7 +51,7 @@ public class Main {
         Chemin chemin = new Chemin(0);
         Station depart;
         Station arrivee;
-        //CheminMinStation algoMin = new CheminMinStation(metro);
+        CheminMinStation algoMin = new CheminMinStation(metro);
         
         Ligne ligne1 = new Ligne(1, "Ligne 1");
         Station station1 = new Station(1, "La Défense", 10, 20, 5);
@@ -102,15 +102,15 @@ public class Main {
         ligne3.ajouterVoie(voie13);
         metro.ajouterLigne(ligne3);
         
-        for (Map.Entry<Integer, Ligne> en : metro.getLignes().entrySet()) {
+       /* for (Map.Entry<Integer, Ligne> en : metro.getLignes().entrySet()) {
             Ligne ligne = en.getValue();
             System.out.println(ligne.getNom());
-        }
+        }*/
 
         System.out.println("Welcome to Paris!");
         
-        metro.afficherTabLignes();
-        metro.afficherDetailsLignes();
+       //metro.afficherTabLignes();
+       // metro.afficherDetailsLignes();
         
         user.emplacementCourant();
         
@@ -119,6 +119,7 @@ public class Main {
         arrivee=station2;
         
         //chemin=CheminMinStation.algoRecherche(depart, arrivee);
+  
         //afficherChemin(chemin);
         
         user.stationPlusProche(metro);

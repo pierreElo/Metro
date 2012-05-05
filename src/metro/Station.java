@@ -57,4 +57,6 @@ public class Station {
     public void setIncident(boolean incident) {
         this.incident = incident;
     }
+    
+    
 }
