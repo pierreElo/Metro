@@ -6,6 +6,7 @@ package metro;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -82,12 +83,35 @@ public class MetroTest {
      */
     @Test
     public void testAjouterLigne() {
+        //ajout d'une ligne
         metro.ajouterLigne(ligne1);
-        assertEquals(metro.getTabLignes().size(),1);
         
-        //si j'ajoute 2 fois la même
+        Iterator<Integer> it = metro.getTabLignes().keySet().iterator();
+        Integer cle = it.next();
+        Ligne valeur = metro.getTabLignes().get(cle);
+        
+        assertEquals(metro.getTabLignes().size(),1);
+        assertEquals(valeur.getNom(),"Ligne 1");
+        assertEquals(valeur.getListeVoies().get(0).getId(),1);
+        
+        //si j'ajoute 2 fois la même ligne
         metro.ajouterLigne(ligne1);
         assertEquals(metro.getTabLignes().size(),1);
+        assertEquals(valeur.getNom(),"Ligne 1");
+        assertEquals(valeur.getListeVoies().get(0).getId(),1);
+        
+        //ajout de null
+        metro.ajouterLigne(null);
+        assertEquals(metro.getTabLignes().size(),1);
+        assertEquals(valeur.getNom(),"Ligne 1");
+        assertEquals(valeur.getListeVoies().get(0).getId(),1);
+        
+        //ajout d'une deuxième ligne
+        metro.ajouterLigne(ligne2);
+        assertEquals(metro.getTabLignes().size(),2);
+        assertEquals(valeur.getNom(),"Ligne 1");
+        assertEquals(valeur.getListeVoies().get(0).getId(),1);
+        
     }
 
 
@@ -98,22 +122,23 @@ public class MetroTest {
     public void testGetVoies() {
         List<Voie> voies = new ArrayList();
         metro.ajouterLigne(ligne1);
-        System.out.println(metro.getTabLignes().size());
       
-        //verfie le nombre d'éléments dans le liste contenant toute les voies
+        //verfie le nombre d'éléments dans le liste contenant toutes les voies
         assertEquals(metro.getAllVoie().size(),3);
         
          //verification des éléments contenu dans la liste
          assertEquals(metro.getAllVoie().get(0).getStationAmont().getId(),1);
-         assertEquals(metro.getAllVoie().get(1).getStationAmont().getId(),2);
+         assertEquals(metro.getAllVoie().get(1).getStationAmont().getId(),2);     
          
          metro.ajouterLigne(ligne2);
          metro.ajouterLigne(ligne3);
          
          //verfie le nombre d'éléments dans le liste contenant toute les voies
-        assertEquals(metro.getAllVoie().size(),6);
+         assertEquals(metro.getAllVoie().size(),6);
+         
         //verification des éléments contenu dans la liste
          assertEquals(metro.getAllVoie().get(5).getStationAmont().getId(),6);
+
         
     }
 }
