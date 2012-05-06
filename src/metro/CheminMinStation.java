@@ -58,26 +58,7 @@ public class CheminMinStation{
         }
         
         return voisins;
-    }
-    
-        //Cette méthode n'a rien à faire dans le main
-    //affiche la liste de tous les chemins
-    public static void afficherListesChemins(List<Chemin> liste){
-         System.out.println("\nListe chemins : ");
-        if((liste==null) || (liste.size()==0)){
-            System.out.print("vide.\n");
-        }
-        else{
-                for(Chemin ch : liste){
-                    if(ch!=null){
-                        System.out.print("     " + ch.getCoutDistance()+", ");
-                        Main.afficherChemin(ch.getParcours());
-                        System.out.println("");
-                    }
-                }
-        }
-    }
-    
+    }   
     
     public Chemin algoRecherche(Station stationActuelle, Station arrivee){
         
