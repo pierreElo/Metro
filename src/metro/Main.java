@@ -1,58 +1,58 @@
 package metro;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import metro.dijkstra.AlgorithmeDijkstra;
+import metro.dijkstra.Tache;
 
 /**
  *
  * @author David Rouyer
  */
 public class Main {
-    
+
     //Cette méthode n'a rien à faire dans le main
     //affiche un chemin
-    public static void afficherChemin(List<Station> liste){
-        if((liste==null)||(liste.size()==0)){
+    public static void afficherChemin(List<Station> liste) {
+        if ((liste == null) || (liste.isEmpty())) {
             System.out.print("Itinéraire impossible.\n");
-        }
-        else{
-                for(Station station : liste){
-                    if(station!=null){
-                        System.out.print(station.getNom()+", ");
-                    }
+        } else {
+            for (Station station : liste) {
+                if (station != null) {
+                    System.out.print(station.getNom() + ", ");
                 }
-            }  
+            }
+        }
     }
-    
+
     //Cette méthode n'a rien à faire dans le main
     //affiche la liste de tous les chemins
-    public static void afficherListesChemins(List<Chemin> liste){
-         System.out.println("\nListe chemins : ");
-        if((liste==null) || (liste.size()==0)){
+    public static void afficherListesChemins(List<Chemin> liste) {
+        System.out.println("\nListe chemins : ");
+        if ((liste == null) || (liste.isEmpty())) {
             System.out.print("vide.\n");
-        }
-        else{
-                for(Chemin ch : liste){
-                    if(ch!=null){
-                        System.out.print("     " + ch.getCoutDistance()+", ");
-                        Main.afficherChemin(ch.getParcours());
-                        System.out.println("");
-                    }
+        } else {
+            for (Chemin ch : liste) {
+                if (ch != null) {
+                    System.out.print("     " + ch.getCoutDistance() + ", ");
+                    Main.afficherChemin(ch.getParcours());
+                    System.out.println("");
                 }
+            }
         }
     }
-    
- 
+
     public static void main(String[] args) {
         Metro metro = new Metro();
-        Utilisateur user = new Utilisateur("Patator","password");
+        Utilisateur user = new Utilisateur("Patator", "password");
         Scanner sc = new Scanner(System.in);
         Chemin chemin = new Chemin(0);
         Station depart;
         Station arrivee;
         //CheminMinStation algoMin = new CheminMinStation(metro);
-        
+
         Ligne ligne1 = new Ligne(1, "Ligne 1");
         Station station1 = new Station(1, "La Défense", 10, 20, 5);
         Station station2 = new Station(2, "Porte Maillot", 10, 5, 2);
@@ -84,7 +84,7 @@ public class Main {
         ligne2.ajouterVoie(voie7);
         ligne2.ajouterVoie(voie8);
         metro.ajouterLigne(ligne2);
-        
+
         Ligne ligne3 = new Ligne(3, "ligne 3");
         Station station11 = new Station(11, "Gambetta", 50, 50, 4);
         Station station12 = new Station(12, "Bécon", 50, 55, 6);
@@ -101,29 +101,34 @@ public class Main {
         ligne3.ajouterVoie(voie12);
         ligne3.ajouterVoie(voie13);
         metro.ajouterLigne(ligne3);
-        
+
         for (Map.Entry<Integer, Ligne> en : metro.getTabLignes().entrySet()) {
             Ligne ligne = en.getValue();
             System.out.println(ligne.getNom());
         }
 
         System.out.println("Welcome to Paris!");
-        
+
         metro.afficherTabLignes();
         metro.afficherDetailsLignes();
-        
+
         //user.emplacementCourant();
-        
+
         //a refaire selon les coordonnées entrées
-        depart=station1;
-        arrivee=station2;
-        
+        depart = station1;
+        arrivee = station2;
+
         //chemin=CheminMinStation.algoRecherche(depart, arrivee);
         //afficherChemin(chemin);
-        
+
         Station dep = station1;
         Station arr = station4;
-        AlgorithmeBellman a = new AlgorithmeBellman(dep, arr, metro);
-        a.resoudre();
+        System.out.println("Dijkstra");
+        AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
+        ArrayList<Tache> res = a.resoudre();
+        for (int i = 0; i < res.size(); i++) {
+            Tache tache = res.get(i);
+            System.out.println(tache.getTache().getNom());
+        }
     }
 }
