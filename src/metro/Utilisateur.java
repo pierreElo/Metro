@@ -3,7 +3,6 @@ package metro;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Set;
 
 
 public class Utilisateur {
@@ -12,7 +11,7 @@ public class Utilisateur {
     private String login;
     private String password;
     private int preferenceChemin; // 0=chemin le + rapide 1= chemin avec le moins de changements
-    private ArrayList<Station> listeStations;
+    private ArrayList<Station> listeStations; // liste des stations par lesquelles l'utilisateur souhaite passer
 
     
     public Utilisateur(String login, String password) {
@@ -64,7 +63,8 @@ public class Utilisateur {
     
     
     
-    public void Inscription(Utilisateur u, ListeUtilisateurs l){
+    public void Inscription(ListeUtilisateurs l){
+        Utilisateur u = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("Veuillez entrer votre login : \n");
         String login = sc.nextLine();
@@ -84,14 +84,17 @@ public class Utilisateur {
         
     }
     
-    public void Connexion(){
-        Utilisateur setlog;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez entrer votre login : ");
+    public void Connexion(Utilisateur u, ListeUtilisateurs l){ // Fonction qui connecte l'utilisateur à son compte
+        /*System.out.println("Veuillez entrer votre login : ");
         String login = sc.nextLine();
         System.out.println("Veuillez entrer votre mot de passe : ");
-        String mdp = sc.nextLine();
-        
+        String mdp = sc.nextLine();*/
+        boolean b = l.contientUtilisateur(u);
+        if (b == true){
+            System.out.println("Vous êtes connecté");
+        }
+        else System.out.println("Vous n'êtes pas connecté");
+
     }
     
     public void Deconnexion(){
