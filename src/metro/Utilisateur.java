@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.*;
 
+import java.util.*;
 
 
 public class Utilisateur {
@@ -74,7 +75,7 @@ public class Utilisateur {
     public void setEmplY(int y){
         this.emplY = y;
     }
-
+    
     public int getPreferenceChemin() {
         return preferenceChemin;
     }
@@ -112,14 +113,12 @@ public class Utilisateur {
         /*System.out.println("Veuillez entrer votre login : ");
         String login = sc.nextLine();
         System.out.println("Veuillez entrer votre mot de passe : ");
-<<<<<<< HEAD
         String mdp = sc.nextLine();*/
         boolean b = l.contientUtilisateur(u);
         if (b == true){
             System.out.println("Vous √™tes connect√©");
         }
         else System.out.println("Vous n'√™tes pas connect√©");
-
 
 
         System.out.println("le chemin min est : ");
@@ -227,9 +226,9 @@ public class Utilisateur {
         
         
         System.out.println("Station la plus proche : "+proche+" √† "+dist+"m.");
-                    
+      
     }
-    
+        
     //Ne marche pas car stationPlusProche renvoie toujours le meme resultat.....
     /*
     public void troisPlusProches(Metro m){
