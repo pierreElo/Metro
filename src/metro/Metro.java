@@ -16,7 +16,9 @@ public class Metro {
     }
 
     public void ajouterLigne(Ligne l){
-        tabLignes.put(l.getId(), l);
+        if (l!=null){
+            tabLignes.put(l.getId(), l);
+        }
     }
 
     public HashMap<Integer, Ligne> getTabLignes() {
@@ -27,16 +29,16 @@ public class Metro {
         this.tabLignes = tabLignes;
     }
 
+    
+    
     public List<Voie> getAllVoie (){
         List<Voie> v = new ArrayList<Voie>();
         
         for (Iterator<Integer> it = tabLignes.keySet().iterator(); it.hasNext();) {
             Integer cle = it.next();
             Ligne valeur = tabLignes.get(cle);
-            System.out.println(valeur.getNom());
             
             for (int j=0 ; j<this.tabLignes.get(cle).getListeVoies().size(); j++) {
-            System.out.println(this.tabLignes.get(cle).getListeVoies().get(j).getId());
                 v.add(this.tabLignes.get(cle).getListeVoies().get(j));
             }
         }

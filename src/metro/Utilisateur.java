@@ -95,48 +95,96 @@ public class Utilisateur {
     }
     
     public void stationPlusProche(Metro m){
-        int currentX, currentY, distX, distY, distTot;
-        ArrayList<Voie> v = new ArrayList<Voie>();
-        HashMap<Integer,Ligne> tabLignes = m.getTabLignes();
-        boolean dejaVu = false;
-        //emplacement utilisateur
-        currentX = this.getEmplX();
-        currentY = this.getEmplY();
-                
-        //stations deja parcourues
-        int[] stationsVues;
+        int distance;
+        int currentX = this.getEmplX();
+        int currentY = this.getEmplY();
         
+        
+        //liste des lignes
+        HashMap<Integer,Ligne> tabLignes = m.getTabLignes();
+        
+        //liste des voies pour chaque ligne
+        ArrayList<Voie> v = new ArrayList<Voie>();
+        
+        //liste des stations pour chaque voie
+        HashMap<Integer,Integer> stations = new HashMap<Integer,Integer>();
+        
+        //4 stations les plus proches <id,distance>
+    //    HashMap<Integer,Integer> stationsProches = new HashMap<Integer,Integer>();
+        
+        //nom de la station la + proche, et distance
+        String proche="";
+        int dist=1000;
+        
+        //parcours de la liste des lignes
         for(Map.Entry<Integer,Ligne> entry : tabLignes.entrySet()){
+            
             Integer cle = entry.getKey();
             
             Ligne l = entry.getValue();
+            
+            //parcours de la liste des voies de cette ligne 
             v = l.getListeVoies();
+            Iterator it = v.iterator();
             
-            //parcours des voies de la ligne consideree
-            //ajouter 1 valeur true/false pour vue/pasvue ?
-            
-        /*    for(int i=0 ; i<v.size() ; i++){
-                for (int var : stationsVues){
-                    if(var==v.get(i).getId()){
-                        dejaVu = true;
-                        break;
+            while(it.hasNext()){
+                
+                Voie voie = (Voie)it.next();
+                Station v1 = voie.getStationAmont();
+                Station v2 = voie.getStationAval();
+                boolean v1vue = false, v2vue = false;
+                
+    /*            for(Map.Entry<Integer,Integer> stationsVues : stationsProches.entrySet()){
+                    
+                    Integer key = entry.getKey();
+                    
+                    Integer voieVue = stationsVues.getValue();
+                    
+                    if(v1.getId()==voieVue){
+                        v1vue = true;
+                    }
+                    if(v1.getId()==voieVue){
+                        v2vue = true;
                     }
                 }
+     */           
+                    if(!v1vue){
+                        distance = (int)Math.sqrt(Math.pow(v1.getX()-currentX,2)+Math.pow(v1.getY()-currentY,2));
+                        
+                        if(distance<dist){
+                            dist = distance;
+                            proche = v1.getNom();
+                        }
+                    }
+                    
+                    if(!v2vue){
+                        distance = (int)Math.sqrt(Math.pow(v1.getX()-currentX,2)+Math.pow(v1.getY()-currentY,2));
+                        
+                        if(distance<dist){
+                            dist = distance;
+                            proche = v1.getNom();
+                        }
+                    }
+                    
                 
-            
-                if(!dejaVu){
                 
-                distX = (this.getEmplX()-v.get(i).getStationAmont().getX());
-                distY = (this.getEmplY()-v.get(i).getStationAmont().getX());
-                
-                System.out.println((String)(v.get(i).getStationAmont().getNom())+" -> "+(String)(v.get(i).getStationAval().getNom()));
             }
-            
-            System.out.println("");
-            }
-        */
                 
         }
+        
+        
+        System.out.println("Station la plus proche : "+proche+" à "+dist+"m.");
+                    
     }
     
+    //Ne marche pas car stationPlusProche renvoie toujours le meme resultat.....
+    /*
+    public void troisPlusProches(Metro m){
+        System.out.println("Les 4 stations les plus proches : ");
+        for(int i=0 ; i<3 ; i++){
+            this.stationPlusProche(m);
+            System.out.println("");
+        }
+    }
+    * */
 }
