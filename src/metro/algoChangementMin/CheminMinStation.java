@@ -1,8 +1,11 @@
 
-package metro;
+package metro.algoChangementMin;
 
 import java.util.ArrayList;
 import java.util.List;
+import metro.Metro;
+import metro.Station;
+import metro.Voie;
 
 /**
  *Algorithme de recherche du chemin passant par le moins de stations
@@ -49,21 +52,27 @@ public class CheminMinStation{
         ArrayList<Station> voisins = new ArrayList();  
         
         for(int i=0; i<this.getMetro().getAllVoie().size(); i++){ 
-            if(this.getMetro().getAllVoie().get(i).getStationAval().equals(station)){
-               // voisins.add(this.getMetro().getAllVoie().get(i).getStationAmont());
-            }
-            else if (this.getMetro().getAllVoie().get(i).getStationAmont().equals(station)) {
-                voisins.add(this.getMetro().getAllVoie().get(i).getStationAval());
+            //recupere les stations voisines si la voie qui les relient n'a pas d'incident
+            if ((this.getMetro().getAllVoie().get(i).getStationAmont().equals(station))&&(!this.getMetro().getAllVoie().get(i).getIncident())) {
+                //si la station n'a pas d'incident
+                if(!this.getMetro().getAllVoie().get(i).getStationAval().getIncident())
+                    voisins.add(this.getMetro().getAllVoie().get(i).getStationAval());
+                else
+                    System.out.print("incident ");
             }
         }
         
+        System.out.println("voisins");
+        for(int i =0 ; i<voisins.size();i++){
+            System.out.println(voisins.get(i).getId());
+        }
         return voisins;
     }   
-    
+  
     public Chemin algoRecherche(Station stationActuelle, Station arrivee){
         
         Chemin ch;
-        List<Station> voisins = new ArrayList();
+        List<Station> voisins;
         
         // tant qu'on est pas arrivée
         if(stationActuelle!=arrivee){
@@ -102,8 +111,9 @@ public class CheminMinStation{
             }
             // on supprime le premier chemin, celui qui vient d'être traité
             cheminsPossibles.remove(0); 
-            //on rappelle l'algo sur le chemin suivant
+            
             algoRecherche(cheminsPossibles.get(0).getParcours().get(cheminsPossibles.get(0).getParcours().size()-1),arrivee);
+            
         }
         
         return cheminsPossibles.get(0);        
