@@ -78,6 +78,9 @@ public class AlgorithmeDijkstra {
         return chemin;
     }
 
+    /*
+     * On prend tous les prédécesseurs et on regarde celui ayant le temps au plus tôt minimal
+     */
     public void predecesseurPlusTot(Tache t, ArrayList<Tache> chemin) {
         Iterator i = t.getPredecesseurs().iterator();
         Tache plusTot = null;
@@ -95,6 +98,9 @@ public class AlgorithmeDijkstra {
         }
     }
 
+    /*
+     * Méthode permettant de construire le graphe des tâches
+     */
     public void construireListeTaches(Tache tacheCourante) {
         for (Map.Entry<Integer, Ligne> entry : metro.getTabLignes().entrySet()) {
             Ligne ligne = entry.getValue();

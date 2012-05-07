@@ -6,7 +6,7 @@ import metro.Station;
 import metro.Voie;
 
 /**
- * Classe utilisée pour l'algorithme de Bellman
+ * Classe utilisée pour l'algorithme de Dijkstra
  */
 public class Tache {
 
@@ -15,7 +15,6 @@ public class Tache {
     private HashSet<Tache> successeurs;
     private HashSet<Voie> arcs;
     private int poids;
-    private boolean marque = false;
 
     public Tache(Station tache) {
         this.tache = tache;
