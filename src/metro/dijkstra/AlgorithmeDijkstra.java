@@ -32,12 +32,14 @@ public class AlgorithmeDijkstra {
         taches.add(depart);
         construireListeTaches(depart);
         poidsPredecesseurs(this.getTacheStation(stationArrivee));
-        ArrayList<Tache> cheminPlusCourt = cheminLePlusCourt();
+        ArrayList<Tache> cheminPlusCourt = new ArrayList<Tache>();
+        cheminPlusCourt = cheminLePlusCourt();
         return cheminPlusCourt;
     }
 
     public int poidsPredecesseurs(Tache t) {
         int poids = 0;
+        if(t!=null){
         if (t.getTache().getId() != stationDepart.getId()) {
             Iterator i = t.getPredecesseurs().iterator();
             while (i.hasNext()) {
@@ -59,6 +61,7 @@ public class AlgorithmeDijkstra {
         } else {
             poids = t.getTache().getTempsArret();
         }
+        }
         return poids;
     }
 
@@ -68,8 +71,10 @@ public class AlgorithmeDijkstra {
     public ArrayList<Tache> cheminLePlusCourt() {
         ArrayList<Tache> chemin = new ArrayList<Tache>();
         Tache arrivee = getTacheStation(stationArrivee);
-        predecesseurPlusTot(arrivee, chemin);
-        chemin.add(arrivee);
+        if(arrivee!=null){
+            predecesseurPlusTot(arrivee, chemin);
+            chemin.add(arrivee);
+        }
         return chemin;
     }
 
@@ -93,7 +98,7 @@ public class AlgorithmeDijkstra {
     public void construireListeTaches(Tache tacheCourante) {
         for (Map.Entry<Integer, Ligne> entry : metro.getTabLignes().entrySet()) {
             Ligne ligne = entry.getValue();
-            if (ligne.contientStationB(stationDepart) && ligne.contientStationB(stationArrivee)) {
+            if (ligne.contientStationB(stationDepart) && ligne.contientStationB(stationArrivee) && !stationDepart.getIncident() && !stationArrivee.getIncident()) {
                 lireTacheSuivante(ligne, tacheCourante);
             }
         }
@@ -104,29 +109,34 @@ public class AlgorithmeDijkstra {
         test = ligne.contientStation(tacheCourante.getTache());
         for (int i = 0; i < test.size(); i++) {
             Voie voie = test.get(i);
-            Station s = voie.retourneStationO(tacheCourante.getTache());
-            Tache tacheSuivante = this.getTacheStation(s);
-            if (tacheSuivante == null) {
-                tacheSuivante = new Tache(s);
-            }
-            /*
-             * Si la tâche n'est pas dans le tableau des tâches, on l'ajoute
-             */
-            if (!estTache(tacheSuivante)) {
-                taches.add(tacheSuivante);
-            }
-            /*
-             * Si les tâches ne sont pas liées, on les lie
-             */
-            if (!tacheSuivante.contientSuccesseur(tacheCourante)) {
-                tacheSuivante.ajouterPredecesseur(tacheCourante);
-                tacheCourante.ajouterSuccesseur(tacheSuivante);
-                tacheCourante.ajouterArc(voie);
-                /*
-                 * On boucle tant que l'on est pas arrivé
-                 */
-                if (tacheSuivante.getTache().getId() != stationArrivee.getId()) {
-                    lireTacheSuivante(ligne, tacheSuivante);
+            if (!voie.getIncident()) {
+                Station s = voie.retourneStationO(tacheCourante.getTache());
+                if (!s.getIncident()) {
+                    Tache tacheSuivante = this.getTacheStation(s);
+                    if (tacheSuivante == null) {
+                        tacheSuivante = new Tache(s);
+                    }
+                    /*
+                     * Si la tâche n'est pas dans le tableau des tâches, on
+                     * l'ajoute
+                     */
+                    if (!estTache(tacheSuivante)) {
+                        taches.add(tacheSuivante);
+                    }
+                    /*
+                     * Si les tâches ne sont pas liées, on les lie
+                     */
+                    if (!tacheSuivante.contientSuccesseur(tacheCourante)) {
+                        tacheSuivante.ajouterPredecesseur(tacheCourante);
+                        tacheCourante.ajouterSuccesseur(tacheSuivante);
+                        tacheCourante.ajouterArc(voie);
+                        /*
+                         * On boucle tant que l'on est pas arrivé
+                         */
+                        if (tacheSuivante.getTache().getId() != stationArrivee.getId()) {
+                            lireTacheSuivante(ligne, tacheSuivante);
+                        }
+                    }
                 }
             }
         }
