@@ -299,14 +299,15 @@ public class UtilisateurTest {
     }
 
     /**
-     * Test of stationPlusProche method, of class Utilisateur.
+     * Test of stationsPlusProches method, of class Utilisateur.
      */
     @Test
-    public void testStationPlusProche() {
-        System.out.println("stationPlusProche");
+    public void testStationsPlusProches() {
+        System.out.println("stationsPlusProches");
         Metro m = null;
+        ArrayList<Station> s = null;
         Utilisateur instance = null;
-        instance.stationPlusProche(m);
+        instance.stationsPlusProches(m,s,1);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
