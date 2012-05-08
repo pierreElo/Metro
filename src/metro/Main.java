@@ -47,7 +47,7 @@ public class Main {
 
     public static void main(String[] args) {
         Metro metro = new Metro();
-        Utilisateur user = new Utilisateur("user", "password");
+        Utilisateur user = new Utilisateur("user", "password", false);
         
         ListeUtilisateurs listeUsers = new ListeUtilisateurs();
         listeUsers.ajouterUtilisateur(user);
@@ -132,7 +132,10 @@ public class Main {
         System.out.println("[1]: INSCRIPTION       ");
         System.out.println("[2]: CONNEXION         \n");
         int selection = sc.nextInt();
-
+        
+        //creation de l'administrateur
+        Utilisateur administrateur = new Utilisateur("admin","abc", true);
+        administrateur.Inscription(listeUsers,"admin","abc");
 
             switch(selection){
                 case 1:
@@ -146,16 +149,17 @@ public class Main {
                     String mdp = sc.nextLine();
                     System.out.println("Votre mot de passe est : "+mdp);
                     
-                    Utilisateur u = new Utilisateur(login,mdp);
+                    Utilisateur u = new Utilisateur(login,mdp,false);
                     u.Inscription(listeUsers,login,mdp);
                     listeUsers.afficherListeUsers();
                    
                 break;
 
                 case 2:
-                 System.out.println("***** ITINERAIRE AVEC LE MOINS DE CHANGEMENTS DE LIGNES *****");                
+                    
+                // System.out.println("***** ITINERAIRE AVEC LE MOINS DE CHANGEMENTS DE LIGNES *****");                
  
-                 break;
+                break;
             }
          
         metro.afficherTabLignes();
