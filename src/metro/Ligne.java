@@ -1,6 +1,8 @@
 package metro;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /*
  * Classe représentant une ligne. Une ligne est composée de plusieurs voies.
@@ -13,11 +15,16 @@ public class Ligne {
     private String nom;
     //Liste des voies, dans leur ordre d'apparition
     private ArrayList<Voie> listeVoies;
+    //Créer une rame toutes les 5 mintes
+    private Timer ramesTimer;
+    //Liste des rames
+    private ArrayList<Rame> listeRames;
 
     public Ligne(int id, String nom) {
         this.id = id;
         this.nom = nom;
         listeVoies = new ArrayList<Voie>();
+        listeRames = new ArrayList<Rame>();
     }
 
     public String getNom() {
@@ -51,6 +58,14 @@ public class Ligne {
     public Voie getVoie(int i) {
         return listeVoies.get(i);
     }
+    
+    public void ajouterRame(Rame r){
+        listeRames.add(r);
+    }
+    
+    public void supprimerRame(Rame r){
+        listeRames.remove(r);
+    }
 
     public boolean contientStationB(Station s) {
         boolean trouve = false;
@@ -62,6 +77,10 @@ public class Ligne {
             }
         }
         return trouve;
+    }
+    
+    public Ligne getLigne(){
+        return this;
     }
 
     /*
@@ -108,5 +127,18 @@ public class Ligne {
             trouve = listeVoies.get(indice - 1);
         }
         return trouve;
+    }
+    
+    public void creerRame(){
+        ramesTimer = new Timer();
+        ramesTimer.schedule(new CreationRame(), 300000);
+    }
+    
+    class CreationRame extends TimerTask{
+
+        @Override
+        public void run() {
+            ajouterRame(new Rame(getLigne()));
+        }
     }
 }

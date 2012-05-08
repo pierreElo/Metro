@@ -54,8 +54,7 @@ public class ListeUtilisateursTest {
         ListeUtilisateurs instance = new ListeUtilisateurs();
         instance.ajouterUtilisateur(u1);
         boolean expResult = false;
-        boolean result = instance.contientUtilisateur(u1);
-        assertEquals(true, instance.contientUtilisateur(u1));
+
         assertEquals(u2, false);
     }
 }

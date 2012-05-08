@@ -14,7 +14,7 @@ import metro.dijkstra.Tache;
  */
 public class Main {
 
-    //Cette m√©thode n'a rien √† faire dans le main
+    //Cette méthode n'a rien à faire dans le main
     //affiche un chemin
     public static void afficherChemin(List<Station> liste) {
         if ((liste == null) || (liste.isEmpty())) {
@@ -28,7 +28,7 @@ public class Main {
         }
     }
 
-    //Cette m√©thode n'a rien √† faire dans le main
+    //Cette méthode n'a rien à faire dans le main
     //affiche la liste de tous les chemins
     public static void afficherListesChemins(List<Chemin> liste) {
         System.out.println("\nListe chemins : ");
@@ -48,8 +48,8 @@ public class Main {
     public static void main(String[] args) {
         Metro metro = new Metro();
         ListeUtilisateurs listeUsers = new ListeUtilisateurs();
-        Utilisateur user2 = new Utilisateur("user2", "password",true);
-        Utilisateur user = new Utilisateur("user", "password",true);
+        Utilisateur user2 = new Utilisateur("user2", "password");
+        Utilisateur user = new Utilisateur("user", "password");
         listeUsers.ajouterUtilisateur(user);
         listeUsers.ajouterUtilisateur(user2);
         listeUsers.afficherListeUsers();
@@ -61,10 +61,10 @@ public class Main {
         ListeStations listeStations = new ListeStations();
         
         Ligne ligne1 = new Ligne(1, "Ligne 1");
-        Station station1 = new Station(1, "La Défense", 10, 20, 5);
+        Station station1 = new Station(1, "La D√©fense", 10, 20, 5);
         Station station2 = new Station(2, "Porte Maillot", 10, 5, 2);
         Station station3 = new Station(3, "Gare de Lyon", 10, -15, 8);
-        Station station4 = new Station(4, "Château de Vincennes", 0, 20, 7);
+        Station station4 = new Station(4, "Ch√¢teau de Vincennes", 0, 20, 7);
         listeStations.ajouterStation(station1);
         listeStations.ajouterStation(station2);
         listeStations.ajouterStation(station3);
@@ -76,12 +76,13 @@ public class Main {
         ligne1.ajouterVoie(voie2);
         ligne1.ajouterVoie(voie3);
         metro.ajouterLigne(ligne1);
+        ligne1.creerRame();
 
         Ligne ligne2 = new Ligne(2, "Ligne 2");
         Station station5 = new Station(5, "Porte Dauphine", 20, 20, 1);
-        Station station6 = new Station(6, "Charles de Gaulle - Etoile", 25, 30, 7);
+        Station station6 = new Station(6, "Charles de Gaulle - √âtoile", 25, 30, 7);
         Station station7 = new Station(7, "Place de Clichy", 30, 25, 3);
-        Station station8 = new Station(8, "Jaurès", 30, 20, 8);
+        Station station8 = new Station(8, "Jaur√®s", 30, 20, 8);
         Station station9 = new Station(9, "Belleville", 30, 30, 8);
         Station station10 = new Station(10, "Nation", 30, 40, 2);
         listeStations.ajouterStation(station5);
@@ -101,12 +102,13 @@ public class Main {
         ligne2.ajouterVoie(voie7);
         ligne2.ajouterVoie(voie8);
         metro.ajouterLigne(ligne2);
+        ligne2.creerRame();
 
         Ligne ligne3 = new Ligne(3, "ligne 3");
         Station station11 = new Station(11, "Gambetta", 50, 50, 4);
-        Station station12 = new Station(12, "Bécon", 50, 55, 6);
+        Station station12 = new Station(12, "B√©con", 50, 55, 6);
         Station station13 = new Station(13, "Saint-Lazare", 55, 50, 1);
-        Station station14 = new Station(14, "Opéra", 60, 30, 8);
+        Station station14 = new Station(14, "Op√©ra", 60, 30, 8);
         listeStations.ajouterStation(station11);
         listeStations.ajouterStation(station12);
         listeStations.ajouterStation(station13);
@@ -128,12 +130,11 @@ public class Main {
             System.out.println(ligne.getNom());
         }*/
 
-       /* System.out.println("Welcome to Paris!");
+        System.out.println("Welcome to Paris!");
 
         System.out.println("\n\nQue souhaitez vous faire ? (Veuillez entrer le numéro correspondant)");
         System.out.println("[1]: INSCRIPTION           \n");
         System.out.println("[2]: CONNEXION             \n");
-        System.out.println("[3]: CONNEXION AUTOMATIQUE \n");
         int selection = sc.nextInt();
 
 
@@ -165,10 +166,8 @@ public class Main {
                     u2.Connexion(listeUsers);
  
                  break;
-                    
-                 case 3:
    
-            }*/
+            }
 
          
         metro.afficherTabLignes();

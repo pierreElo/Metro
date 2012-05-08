@@ -28,8 +28,6 @@ public class Metro {
     public void setTabLignes(HashMap<Integer, Ligne> tabLignes) {
         this.tabLignes = tabLignes;
     }
-
-    
     
     public List<Voie> getAllVoie (){
         List<Voie> v = new ArrayList<Voie>();
