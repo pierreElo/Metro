@@ -271,7 +271,7 @@ public class UtilisateurTest {
         Utilisateur u = null;
         ListeUtilisateurs l = null;
         Utilisateur instance = null;
-        instance.Connexion(u, l);
+        instance.Connexion(l);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

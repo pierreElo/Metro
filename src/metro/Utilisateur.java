@@ -105,17 +105,19 @@ public class Utilisateur {
         u.ajouterStation(s);
     }
     
-    public void Connexion(Utilisateur u, ListeUtilisateurs l) { // Fonction qui connecte l'utilisateur √† son compte
+    public void Connexion(ListeUtilisateurs l) { // Fonction qui connecte l'utilisateur √† son compte
         /*
          * System.out.println("Veuillez entrer votre login : "); String login =
          * sc.nextLine(); System.out.println("Veuillez entrer votre mot de passe
          * : "); String mdp = sc.nextLine();
          */
-        boolean b = l.contientUtilisateur(u);
+
+        boolean b = l.contientEnregistrement(this.login,this.password);
         if (b == true) {
-            System.out.println("Vous etes connecte");
-        } else {
-            System.out.println("Vous n'etes pas connecte");
+            System.out.println("Vous etes connecté");
+        } 
+        else {
+            System.out.println("Vous n'etes pas connecté");
         }
 
         System.out.println("le chemin min est : ");

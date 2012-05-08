@@ -47,10 +47,12 @@ public class Main {
 
     public static void main(String[] args) {
         Metro metro = new Metro();
-        Utilisateur user = new Utilisateur("user", "password");
-        
         ListeUtilisateurs listeUsers = new ListeUtilisateurs();
+        Utilisateur user2 = new Utilisateur("user2", "password");
+        Utilisateur user = new Utilisateur("user", "password");
         listeUsers.ajouterUtilisateur(user);
+        listeUsers.ajouterUtilisateur(user2);
+        listeUsers.afficherListeUsers();
         Scanner sc = new Scanner(System.in);
         Chemin chemin = new Chemin(0);
         Station depart;
@@ -140,11 +142,9 @@ public class Main {
                     System.out.println("Veuillez entrer votre login : \n");
                     sc.nextLine();
                     String login = sc.nextLine();
-                    System.out.println("Votre login : "+login);
                     System.out.println("Veuillez entrer votre mot de passe : \n");
                     sc.nextLine();
                     String mdp = sc.nextLine();
-                    System.out.println("Votre mot de passe : "+mdp);
                     sc.nextLine();
                     Utilisateur u = new Utilisateur(login,mdp);
                     u.Inscription(listeUsers,login,mdp);
@@ -153,7 +153,15 @@ public class Main {
                 break;
 
                 case 2:
-                 System.out.println("***** ITINERAIRE AVEC LE MOINS DE CHANGEMENTS DE LIGNES *****");                
+                    System.out.println("[2]: CONNEXION\n");
+                    System.out.println("Veuillez entrer votre login : \n");
+                    sc.nextLine();
+                    String login2 = sc.nextLine();
+                    System.out.println("Veuillez entrer votre mot de passe : \n");
+                    sc.nextLine();
+                    String mdp2 = sc.nextLine();
+                    Utilisateur u2 = new Utilisateur(login2,mdp2);
+                    u2.Connexion(listeUsers);
  
                  break;
             }
