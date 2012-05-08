@@ -82,6 +82,10 @@ public class Ligne {
     public Ligne getLigne(){
         return this;
     }
+    
+    public ArrayList<Rame> getListeRames(){
+        return listeRames;
+    }
 
     /*
      * @return l'emplacement de la voie sur laquelle la station a été trouvée
@@ -131,7 +135,7 @@ public class Ligne {
     
     public void creerRame(){
         ramesTimer = new Timer();
-        ramesTimer.schedule(new CreationRame(), 300000);
+        ramesTimer.scheduleAtFixedRate(new CreationRame(), 0, 300000);
     }
     
     class CreationRame extends TimerTask{

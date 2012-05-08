@@ -4,27 +4,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ListeUtilisateurs {
-
-    private HashMap<String, Utilisateur> listeUtilisateurs;
+    
+    private HashMap<String,Utilisateur> listeUtilisateurs;
+    private int id = 1;
 
     public ListeUtilisateurs() {
         listeUtilisateurs = new HashMap<String, Utilisateur>();
     }
-
-    public void ajouterUtilisateur(Utilisateur u) {
-        if (u != null) {
-            listeUtilisateurs.put(u.getLogin(), u);
+ 
+    public void ajouterUtilisateur(Utilisateur u){
+        if (u!=null){
+        listeUtilisateurs.put(u.getLogin(), u);
+        this.id++;
         }
     }
 
-    public boolean contientEnregistrement(String login, String password) {
-        boolean contient = false;
-        if (listeUtilisateurs.get(login) != null) {
-            if (password.equals(password)) {
-                contient = true;
-            }
-        }
-        return contient;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean contientEnregistrement(String login, String password){
+        
+       boolean contient = false;
+       if(listeUtilisateurs.get(login) != null){
+           if (password.equals(password)){
+               return true;
+           }
+           
+       }
+       return false;
     }
 
     public void afficherListeUsers() {

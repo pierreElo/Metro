@@ -107,6 +107,7 @@ public class Utilisateur {
         System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
         int choix = sc.nextInt();
         this.preferenceChemin = choix;
+        this.idUser = l.getId();
         l.ajouterUtilisateur(this);
         System.out.println("Inscription reussie\n");
 
