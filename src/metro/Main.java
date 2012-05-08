@@ -1,7 +1,6 @@
 package metro;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import metro.algoChangementMin.Chemin;
 import metro.algoChangementMin.CheminMinStation;
@@ -14,52 +13,16 @@ import metro.dijkstra.Tache;
  */
 public class Main {
 
-    //Cette methode n'a rien a faire dans le main
-    //affiche un chemin
-    public static void afficherChemin(List<Station> liste) {
-        if ((liste == null) || (liste.isEmpty())) {
-            System.out.print("Itineraire impossible.\n");
-        } else {
-            for (Station station : liste) {
-                if (station != null) {
-                    System.out.print(station.getNom() + ", ");
-                }
-            }
-        }
-    }
-
-    //Cette methode n'a rien a faire dans le main
-    //affiche la liste de tous les chemins
-    public static void afficherListesChemins(List<Chemin> liste) {
-        System.out.println("\nListe chemins : ");
-        if ((liste == null) || (liste.isEmpty())) {
-            System.out.print("vide.\n");
-        } else {
-            for (Chemin ch : liste) {
-                if (ch != null) {
-                    System.out.print("     " + ch.getCoutDistance() + ", ");
-                    Main.afficherChemin(ch.getParcours());
-                    System.out.println("");
-                }
-            }
-        }
-    }
-
     public static void main(String[] args) {
         Metro metro = new Metro();
         ListeUtilisateurs listeUsers = new ListeUtilisateurs();
 
-        /*
-         * Utilisateur user = new Utilisateur("user", "password", 0);
-         * Utilisateur user2 = new Utilisateur("user2", "password", 1);
-         */
-        Utilisateur user = new Utilisateur("user", "password", true);
-        Utilisateur user2 = new Utilisateur("user2", "password", false);
+        Utilisateur utilisateur1 = new Utilisateur("admin", "admin", true);
+        Utilisateur utilisateur2 = new Utilisateur("user", "user", false);
 
-        listeUsers.ajouterUtilisateur(user);
-        listeUsers.ajouterUtilisateur(user2);
+        listeUsers.ajouterUtilisateur(utilisateur1);
+        listeUsers.ajouterUtilisateur(utilisateur2);
 
-        CheminMinStation algoMin = new CheminMinStation(metro);
         ListeStations listeStations = new ListeStations();
 
         Ligne ligne1 = new Ligne(1, "Ligne 1");
@@ -125,60 +88,57 @@ public class Main {
         ligne3.ajouterVoie(voie13);
         metro.ajouterLigne(ligne3);
 
-        /*
-         * for (Map.Entry<Integer, Ligne> en : metro.getTabLignes().entrySet())
-         * { Ligne ligne = en.getValue(); System.out.println(ligne.getNom()); }
-         */
-
-        listeUsers.afficherListeUsers();
         Scanner sc = new Scanner(System.in);
-        Chemin chemin = new Chemin(0);
-        Station depart;
-        Station arrivee;
 
-        System.out.println("Welcome to Paris!");
+        System.out.println("Welcome to Paris!\n");
 
-        System.out.println("\n\nQue souhaitez vous faire ? (Veuillez entrer le numéro correspondant)");
-        System.out.println("[1]: INSCRIPTION           ");
-        System.out.println("[2]: CONNEXION             ");
-        System.out.println("[6]: QUITTER");
-        int selection = sc.nextInt();
-        switch (selection) {
-            case 1:
-                System.out.println("[1]: INSCRIPTION\n");
-                System.out.println("Veuillez entrer votre login : ");
-                sc.nextLine();
-                String login = sc.nextLine();
-                System.out.println("Veuillez entrer votre mot de passe : ");
-                sc.nextLine();
-                String mdp = sc.nextLine();
-                sc.nextLine();
-                Utilisateur u = new Utilisateur(login, mdp);
-                u.Inscription(listeUsers, login, mdp);
-                listeUsers.afficherListeUsers();
-
-                break;
-
-            case 2:
-                System.out.println("[2]: CONNEXION\n");
-                System.out.println("Veuillez entrer votre login : ");
-                sc.nextLine();
-                String login2 = sc.nextLine();
-                System.out.println("Veuillez entrer votre mot de passe : ");
-                sc.nextLine();
-                String mdp2 = sc.nextLine();
-                Utilisateur u2 = new Utilisateur(login2, mdp2);
-                u2.Connexion(listeUsers);
-                //System.out.println("Vous préférez le chemin : " + u2.getPreferenceChemin());
-                break;
-            case 6:
-                System.out.println("Merci et à bientôt");
-                break;
-            default:
-                System.out.print("mauvais choix");
+        Utilisateur connecte = null;
+        boolean connexion = false;
+        while (!connexion) {
+            System.out.println("Que souhaitez vous faire ? (Veuillez entrer le numéro correspondant)");
+            System.out.println("[1]: INSCRIPTION           ");
+            System.out.println("[2]: CONNEXION             ");
+            System.out.println("[6]: QUITTER");
+            int selection = sc.nextInt();
+            switch (selection) {
+                case 1:
+                    Scanner scStr = new Scanner(System.in);
+                    System.out.println("[1]: INSCRIPTION\n");
+                    System.out.println("Veuillez entrer votre login : ");
+                    scStr.nextLine();
+                    String login = scStr.nextLine();
+                    System.out.println("Veuillez entrer votre mot de passe : ");
+                    String mdp = scStr.nextLine();
+                    Utilisateur u = new Utilisateur(login, mdp);
+                    u.Inscription(listeUsers, login, mdp);
+                    connecte = u;
+                    connexion = true;
+                    listeUsers.afficherListeUsers();
+                    break;
+                case 2:
+                    Scanner scStr2 = new Scanner(System.in);
+                    System.out.println("[2]: CONNEXION\n");
+                    System.out.println("Veuillez entrer votre login : ");
+                    String login2 = scStr2.nextLine();
+                    System.out.println("Veuillez entrer votre mot de passe : ");
+                    String mdp2 = scStr2.nextLine();
+                    Utilisateur u2 = new Utilisateur(login2, mdp2);
+                    if (u2.Connexion(listeUsers)) {
+                        connecte = u2;
+                        connexion = true;
+                    } else {
+                        System.out.println("Erreur de login ou de mot de passe");
+                    }
+                    //System.out.println("Vous préférez le chemin : " + u2.getPreferenceChemin());
+                    break;
+                case 6:
+                    System.out.println("Merci et à bientôt");
+                    break;
+                default:
+                    break;
+            }
         }
-
-        user.emplacementCourant();
+        connecte.emplacementCourant();
 
         while (true) {
             System.out.println("Menu");
@@ -187,6 +147,10 @@ public class Main {
             System.out.println("[3]: Afficher les 3 stations les plus proches");
             System.out.println("[4]: Itinéraire franchissant le moins de station possible");
             System.out.println("[5]: Itinéraire en temps le plus court");
+            if (connecte.estAdmin()) {
+                System.out.println("[6]: ADMIN - Liste des utilisateurs");
+            }
+
             int selection2 = sc.nextInt();
             switch (selection2) {
                 case 1:
@@ -198,20 +162,38 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("3 stations les plus proches : ");
-                    ArrayList<Station> stations = user.listeStations(metro);
-                    user.stationsPlusProches(metro, stations, 1);
+                    ArrayList<Station> stations = connecte.listeStations(metro);
+                    connecte.stationsPlusProches(metro, stations, 1);
                     break;
                 case 4:
-                    //a refaire selon les coordonnées entrées
-                    depart = station1;
-                    arrivee = station2;
-
-                    //chemin=CheminMinStation.algoRecherche(depart, arrivee);
-                    //afficherChemin(chemin);
+                    Scanner scStr3 = new Scanner(System.in);
+                    Chemin chemin = new Chemin(0);
+                    Station depart;
+                    Station arrivee;
+                    System.out.println("Spécifier la station de départ (identifiant) : ");
+                    int idDepart = scStr3.nextInt();
+                    depart = listeStations.getStation(idDepart);
+                    System.out.println("Spécifier la station d'arrivée (identifiant) : ");
+                    int idArrivee = scStr3.nextInt();
+                    arrivee = listeStations.getStation(idArrivee);
+                    if (depart != null && arrivee != null) {
+                        CheminMinStation algoMin = new CheminMinStation(metro);
+                        chemin = algoMin.algoRecherche(depart, arrivee);
+                        chemin.afficherChemin();
+                    }else{
+                        System.out.println("Stations erronées");
+                    }
                     break;
                 case 5:
+                    Scanner scStr4 = new Scanner(System.in);
                     Station dep = station1;
                     Station arr = station4;
+                    System.out.println("Spécifier la station de départ (identifiant) : ");
+                    int idDepart2 = scStr4.nextInt();
+                    dep = listeStations.getStation(idDepart2);
+                    System.out.println("Spécifier la station d'arrivée (identifiant) : ");
+                    int idArrivee2 = scStr4.nextInt();
+                    arr = listeStations.getStation(idArrivee2);
                     System.out.println("Dijkstra");
                     AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
                     ArrayList<Tache> res = a.resoudre();
@@ -219,6 +201,10 @@ public class Main {
                         Tache tache = res.get(i);
                         System.out.println(tache.getTache().getNom());
                     }
+                    break;
+                case 6:
+                    listeUsers.afficherListeUsers();
+                    break;
                 default:
                     break;
             }

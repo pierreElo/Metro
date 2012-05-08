@@ -48,23 +48,14 @@ public class CheminMinStation{
      * @return 
      */
     public ArrayList<Station> getVoisins(Station station){  
-        
         ArrayList<Station> voisins = new ArrayList();  
-        
         for(int i=0; i<this.getMetro().getAllVoie().size(); i++){ 
             //recupere les stations voisines si la voie qui les relient n'a pas d'incident
             if ((this.getMetro().getAllVoie().get(i).getStationAmont().equals(station))&&(!this.getMetro().getAllVoie().get(i).getIncident())) {
                 //si la station n'a pas d'incident
                 if(!this.getMetro().getAllVoie().get(i).getStationAval().getIncident())
                     voisins.add(this.getMetro().getAllVoie().get(i).getStationAval());
-                else
-                    System.out.print("incident ");
             }
-        }
-        
-        System.out.println("voisins");
-        for(int i =0 ; i<voisins.size();i++){
-            System.out.println(voisins.get(i).getId());
         }
         return voisins;
     }   
@@ -77,7 +68,7 @@ public class CheminMinStation{
         // tant qu'on est pas arrivée
         if(stationActuelle!=arrivee){
             //si c'est le premier appel on met le station de depart en chemin
-            if(cheminsPossibles.size()==0){
+            if(cheminsPossibles.isEmpty()){
                 ch = new Chemin(0);
                 List<Station> liste = ch.getParcours();
                 liste.add(stationActuelle);

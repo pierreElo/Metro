@@ -118,7 +118,7 @@ public class DijkstraTest extends TestCase {
     }
     
     public void testDijkstraAvecIncident(){
-                Metro metro = new Metro();
+        Metro metro = new Metro();
 
         Station station1 = new Station(1, "La Défense", 10, 20, 5);
         Station station2 = new Station(2, "Porte Maillot", 10, 5, 2);

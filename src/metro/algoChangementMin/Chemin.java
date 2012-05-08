@@ -31,4 +31,19 @@ public class Chemin {
     public void setParcours(List<Station> parcours) {
         this.parcours = parcours;
     }
+    
+    //Affiche un chemin
+    public void afficherChemin() {
+        if ((this.parcours == null) || (this.parcours.isEmpty())) {
+            System.out.print("Itinéraire impossible.\n");
+        } else {
+            for (int i = 0; i < this.parcours.size(); i++) {
+                Station station = this.parcours.get(i);
+                if(i<this.parcours.size()-1)
+                    System.out.print(station.getNom() + ", ");
+                else
+                    System.out.println(station.getNom());
+            }
+        }
+    }
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class ListeStations {
     
-        private HashMap<Integer,Station> listeStations;
+    private HashMap<Integer,Station> listeStations;
 
     public ListeStations() {
         listeStations = new HashMap<Integer, Station>();
@@ -25,7 +25,11 @@ public class ListeStations {
         else return false;
     }
     
-        public void afficherListeStations(){
+    public Station getStation(int id){
+        return listeStations.get(id);
+    }
+    
+    public void afficherListeStations(){
         System.out.println("\n\nListe des stations : ");
         
         //Boucle sur le champ clé de la HashMap

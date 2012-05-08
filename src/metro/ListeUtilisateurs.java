@@ -28,7 +28,6 @@ public class ListeUtilisateurs {
     }
 
     public boolean contientEnregistrement(String login, String password){
-        
        boolean contient = false;
        if(listeUtilisateurs.get(login) != null){
            if (password.equals(password)){

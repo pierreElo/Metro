@@ -7,8 +7,8 @@ public class Utilisateur {
     private int idUser;
     private String login;
     private String password;
-    private boolean estAdmin;
-    private int preferenceChemin; // 0=chemin le + rapide 1= chemin avec le moins de changements
+    private boolean estAdmin=false;
+    private int preferenceChemin=0; // 0=chemin le + rapide 1= chemin avec le moins de changements
     private ArrayList<Station> listeStations; // liste des stations par lesquelles l'utilisateur souhaite passer
     private Set<Utilisateur> listeUtilisateurs;
     private int emplX;
@@ -31,7 +31,7 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public boolean isEstAdmin() {
+    public boolean estAdmin() {
         return estAdmin;
     }
 
@@ -132,19 +132,14 @@ public class Utilisateur {
         u.ajouterStation(s);
     }
 
-    public void Connexion(ListeUtilisateurs l) { // Fonction qui connecte l'utilisateur √† son compte
-        /*
-         * System.out.println("Veuillez entrer votre login : "); String login =
-         * sc.nextLine(); System.out.println("Veuillez entrer votre mot de passe
-         * : "); String mdp = sc.nextLine();
-         */
-
+    public boolean Connexion(ListeUtilisateurs l) { // Fonction qui connecte l'utilisateur √† son compte
         boolean b = l.contientEnregistrement(this.login, this.password);
         if (b == true) {
             System.out.println("Vous êtes connecté");
         } else {
             System.out.println("Vous n'êtes pas connecté");
         }
+        return b;
     }
 
     public void Deconnexion(Utilisateur u) {
