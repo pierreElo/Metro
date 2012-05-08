@@ -7,21 +7,27 @@ public class Utilisateur {
     private int idUser;
     private String login;
     private String password;
+    private boolean estAdmin;
     private int preferenceChemin; // 0=chemin le + rapide 1= chemin avec le moins de changements
     private ArrayList<Station> listeStations; // liste des stations par lesquelles l'utilisateur souhaite passer
     private Set<Utilisateur> listeUtilisateurs;
     private int emplX;
     private int emplY;
 
-    public Utilisateur(String login, String password) {
+    public Utilisateur(String login, String password, boolean estAdmin) {
         this.login = login;
         this.password = password;
+        this.estAdmin = estAdmin;
     }
 
-    public Utilisateur(){
-        
+    public boolean isEstAdmin() {
+        return estAdmin;
     }
-    
+
+    public Set<Utilisateur> getListeUtilisateurs() {
+        return listeUtilisateurs;
+    }
+ 
     public int getIdUser() {
         return idUser;
     }
@@ -40,6 +46,14 @@ public class Utilisateur {
 
     public void setListeStations(ArrayList<Station> listeStations) {
         this.listeStations = listeStations;
+    }
+
+    public void setEstAdmin(boolean estAdmin) {
+        this.estAdmin = estAdmin;
+    }
+
+    public void setListeUtilisateurs(Set<Utilisateur> listeUtilisateurs) {
+        this.listeUtilisateurs = listeUtilisateurs;
     }
 
     public String getLogin() {
@@ -84,9 +98,9 @@ public class Utilisateur {
 
     public void Inscription(ListeUtilisateurs l,String login, String mdp) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez choisir vos preferences : ");
-        System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide \n");
-        System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles \n");
+        System.out.println("\nVeuillez choisir vos preferences : ");
+        System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide ");
+        System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
         int choix = sc.nextInt();
         this.preferenceChemin = choix;
         l.ajouterUtilisateur(this);

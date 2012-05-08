@@ -38,7 +38,7 @@ public class ListeUtilisateursTest {
     @Test
     public void testAjouterUtilisateur() {
         System.out.println("ajouterUtilisateur");
-        Utilisateur u = new Utilisateur("toto","pass");
+        Utilisateur u = new Utilisateur("toto","pass",false);
         ListeUtilisateurs instance = new ListeUtilisateurs();
         instance.ajouterUtilisateur(u);
     }
@@ -49,8 +49,8 @@ public class ListeUtilisateursTest {
     @Test
     public void testContientUtilisateur() {
         System.out.println("contientUtilisateur");
-        Utilisateur u1 = new Utilisateur("toto","pass");
-        Utilisateur u2 = new Utilisateur("titi","pass2");
+        Utilisateur u1 = new Utilisateur("toto","pass",false);
+        Utilisateur u2 = new Utilisateur("titi","pass2",false);
         ListeUtilisateurs instance = new ListeUtilisateurs();
         instance.ajouterUtilisateur(u1);
         boolean expResult = false;

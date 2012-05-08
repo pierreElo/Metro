@@ -128,11 +128,12 @@ public class Main {
             System.out.println(ligne.getNom());
         }*/
 
-        System.out.println("Welcome to Paris!");
+       /* System.out.println("Welcome to Paris!");
 
         System.out.println("\n\nQue souhaitez vous faire ? (Veuillez entrer le numéro correspondant)");
-        System.out.println("[1]: INSCRIPTION       \n");
-        System.out.println("[2]: CONNEXION         \n");
+        System.out.println("[1]: INSCRIPTION           \n");
+        System.out.println("[2]: CONNEXION             \n");
+        System.out.println("[3]: CONNEXION AUTOMATIQUE \n");
         int selection = sc.nextInt();
 
 
@@ -164,7 +165,10 @@ public class Main {
                     u2.Connexion(listeUsers);
  
                  break;
-            }
+                    
+                 case 3:
+   
+            }*/
 
          
         metro.afficherTabLignes();
