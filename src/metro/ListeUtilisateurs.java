@@ -18,35 +18,19 @@ public class ListeUtilisateurs {
         }
     }
 
-    public boolean contientUtilisateur(Utilisateur u){
-        if(listeUtilisateurs.containsValue(u) == true){
-            return true;
-        }
-        else return false;
-    }
-
     public boolean contientEnregistrement(String login, String password){
         
        boolean contient = false;
-       Iterator<Map.Entry<String,Utilisateur>> itr = listeUtilisateurs.entrySet().iterator();
-
-        //Boucle sur le champ clé de la HashMap
-        for(Map.Entry<String,Utilisateur> entry : listeUtilisateurs.entrySet()){
-            String cle = entry.getKey();
-            System.out.println("Vo");
-            //Recupere la valeur pour la cle en cours
-            String login2 = entry.getValue().getLogin().toString();
-            String mdp = entry.getValue().getPassword().toString();
-            
-            //Verifie si le login et le password sont les mêmes que ceux de l'enregistrement
-            if (login2.equals(login) && mdp.equals(password)){
-                
-                System.out.println(cle+" - "+login);
-                contient = true;
-            }
-        }
-       return contient;
-    }    
+       if(listeUtilisateurs.get(login) != null){
+           if (password.equals(password)){
+               return true;
+           }
+           
+       }
+       return false;
+    }
+       
+        
     
     public void afficherListeUsers(){
         System.out.println("\n\nListe des utilisateurs : ");
