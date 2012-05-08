@@ -129,23 +129,23 @@ public class Main {
         System.out.println("Welcome to Paris!");
 
         System.out.println("\n\nQue souhaitez vous faire ? (Veuillez entrer le numéro correspondant)");
-        System.out.println("[1]: INSCRIPTION       \n");
+        System.out.println("[1]: INSCRIPTION       ");
         System.out.println("[2]: CONNEXION         \n");
         int selection = sc.nextInt();
 
 
             switch(selection){
                 case 1:
-                    System.out.println("[1]: INSCRIPTION\n");
-                    System.out.println("Veuillez entrer votre login : \n");
+                    System.out.println("INSCRIPTION : ");
+                    System.out.println("Veuillez entrer votre login : ");
                     sc.nextLine();
                     String login = sc.nextLine();
-                    System.out.println("Votre login : "+login);
-                    System.out.println("Veuillez entrer votre mot de passe : \n");
-                    sc.nextLine();
+                    System.out.println("Votre login est : "+login);
+                    System.out.println("\nVeuillez entrer votre mot de passe : ");
+                   
                     String mdp = sc.nextLine();
-                    System.out.println("Votre mot de passe : "+mdp);
-                    sc.nextLine();
+                    System.out.println("Votre mot de passe est : "+mdp);
+                    
                     Utilisateur u = new Utilisateur(login,mdp);
                     u.Inscription(listeUsers,login,mdp);
                     listeUsers.afficherListeUsers();
@@ -157,20 +157,12 @@ public class Main {
  
                  break;
             }
-
          
         metro.afficherTabLignes();
         metro.afficherDetailsLignes();
         listeStations.afficherListeStations();
 
         user.emplacementCourant();
-
-        //a refaire selon les coordonn√©es entr√©es
-        depart = station1;
-        arrivee = station2;
-
-        //chemin=CheminMinStation.algoRecherche(depart, arrivee);
-        //afficherChemin(chemin);
         
         user.stationPlusProche(metro);
         //user.troisPlusProches(metro);
