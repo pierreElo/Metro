@@ -41,7 +41,7 @@ public class Station {
     public String getNom() {
         return nom;
     }
-
+    
     public boolean getIncident() {
         return incident;
     }
