@@ -1,3 +1,4 @@
+
 package metro;
 
 import metro.algoChangementMin.Chemin;
@@ -187,7 +188,7 @@ public class Main {
         //chemin=CheminMinStation.algoRecherche(depart, arrivee);
         //afficherChemin(chemin);
         
-        user.stationPlusProche(metro);
+        //user.stationPlusProche(metro);
         //user.troisPlusProches(metro);
 
         Station dep = station1;
@@ -201,3 +202,4 @@ public class Main {
         }
     }
 }
+

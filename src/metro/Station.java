@@ -1,5 +1,10 @@
 package metro;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 /*
  * Classe représentant une station
  */
@@ -41,7 +46,7 @@ public class Station {
     public String getNom() {
         return nom;
     }
-
+    
     public boolean getIncident() {
         return incident;
     }
@@ -65,6 +70,7 @@ public class Station {
     public void setIncident(boolean incident){
         this.incident=incident;
     }
+    
     
     
 }

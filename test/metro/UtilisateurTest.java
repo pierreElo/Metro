@@ -306,7 +306,6 @@ public class UtilisateurTest {
         System.out.println("stationPlusProche");
         Metro m = null;
         Utilisateur instance = null;
-        instance.stationPlusProche(m);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
