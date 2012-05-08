@@ -205,11 +205,11 @@ public class Utilisateur {
                 }
             }
         }
-
+/*
         for (int i = 0; i < s.size(); i++) {
             System.out.println(s.get(i).getId() + " - " + s.get(i).getNom());
         }
-
+*/
         return s;
     }
     /**

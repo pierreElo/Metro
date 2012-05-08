@@ -172,7 +172,7 @@ public class Main {
                 //System.out.println("Vous préférez le chemin : " + u2.getPreferenceChemin());
                 break;
             case 6:
-                System.out.println("Merci et à bientôt");
+                System.out.println("Merci et a bientot");
                 break;
             default:
                 System.out.print("mauvais choix");
@@ -212,7 +212,7 @@ public class Main {
                 case 5:
                     Station dep = station1;
                     Station arr = station4;
-                    System.out.println("Dijkstra");
+                    System.out.println("DIJKSTRA");
                     AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
                     ArrayList<Tache> res = a.resoudre();
                     for (int i = 0; i < res.size(); i++) {

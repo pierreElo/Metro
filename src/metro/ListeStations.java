@@ -34,7 +34,10 @@ public class ListeStations {
             
             //Recupere la valeur pour la cle en cours, et ecrit le couple
             String val = entry.getValue().getNom().toString();
-            System.out.println(cle+" - "+val);
+            System.out.print(cle+" - "+val+" | Temps d'arret : "+entry.getValue().getTempsArret()+"min.");
+            if(entry.getValue().getIncident()){
+                System.out.println("   !!! Incident en cours sur cette station !!!");
+            }
         }
     }
 

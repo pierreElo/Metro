@@ -77,6 +77,9 @@ public class Metro {
             
             for(int i=0 ; i<v.size() ; i++){
                 System.out.println((String)(v.get(i).getStationAmont().getNom())+" -> "+(String)(v.get(i).getStationAval().getNom())+" | Temps de parcours : "+v.get(i).getTempsParcours()+"min.");
+                if(v.get(i).getIncident()){
+                    System.out.println("   !!! Incident en cours sur cette voie !!!");
+                }
             }
             System.out.println("");
         }
