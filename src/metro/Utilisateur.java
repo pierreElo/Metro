@@ -1,3 +1,4 @@
+
 package metro;
 
 import java.util.*;
@@ -19,7 +20,12 @@ public class Utilisateur {
         this.password = password;
         this.estAdmin = estAdmin;
     }
-    public Utilisateur(String login, String password) {
+    public Utilisateur(String login, String password,int preferenceChemin) {
+        this.login = login;
+        this.password = password;
+        this.preferenceChemin= preferenceChemin;
+    }
+        public Utilisateur(String login, String password) {
         this.login = login;
         this.password = password;
     }
