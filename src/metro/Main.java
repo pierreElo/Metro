@@ -1,5 +1,6 @@
 package metro;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -10,11 +11,11 @@ import java.util.Scanner;
  */
 public class Main {
     
-    //Cette méthode n'a rien à faire dans le main
+    //Cette methode n'a rien à faire dans le main
     //affiche un chemin
     public static void afficherChemin(List<Station> liste){
         if((liste==null)||(liste.size()==0)){
-            System.out.print("Itinéraire impossible.\n");
+            System.out.print("Itineraire impossible.\n");
         }
         else{
                 for(Station station : liste){
@@ -25,7 +26,7 @@ public class Main {
             }  
     }
     
-    //Cette méthode n'a rien à faire dans le main
+    //Cette methode n'a rien à faire dans le main
     //affiche la liste de tous les chemins
     public static void afficherListesChemins(List<Chemin> liste){
          System.out.println("\nListe chemins : ");
@@ -54,7 +55,7 @@ public class Main {
         CheminMinStation algoMin = new CheminMinStation(metro);
         
         Ligne ligne1 = new Ligne(1, "Ligne 1");
-        Station station1 = new Station(1, "La Défense", 10, 20, 5);
+        Station station1 = new Station(1, "La Defense", 10, 20, 5);
         Station station2 = new Station(2, "Porte Maillot", 10, 5, 2);
         Station station3 = new Station(3, "Gare de Lyon", 10, -15, 8);
         Station station4 = new Station(4, "Château de Vincennes", 0, 20, 7);
@@ -87,9 +88,9 @@ public class Main {
         
         Ligne ligne3 = new Ligne(3, "ligne 3");
         Station station11 = new Station(11, "Gambetta", 50, 50, 4);
-        Station station12 = new Station(12, "Bécon", 50, 55, 6);
+        Station station12 = new Station(12, "Becon", 50, 55, 6);
         Station station13 = new Station(13, "Saint-Lazare", 55, 50, 1);
-        Station station14 = new Station(14, "Opéra", 60, 30, 8);
+        Station station14 = new Station(14, "Opera", 60, 30, 8);
         Voie voie9 = new Voie(9, station1, station11, 3);
         Voie voie10 = new Voie(10, station11, station12, 3);
         Voie voie11 = new Voie(11, station12, station13, 4);
@@ -114,7 +115,7 @@ public class Main {
         
         user.emplacementCourant();
         
-        //a refaire selon les coordonnées entrées
+        //a refaire selon les coordonnees entrees
         depart=station1;
         arrivee=station2;
         
@@ -122,7 +123,8 @@ public class Main {
   
         //afficherChemin(chemin);
         
-        user.stationPlusProche(metro);
-        //user.troisPlusProches(metro);
+        System.out.println("Stations les plus proches : ");
+        ArrayList<Station> stations = user.listeStations(metro);
+        user.stationsPlusProches(metro,stations,1);
     }
 }
