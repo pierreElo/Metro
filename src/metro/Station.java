@@ -30,6 +30,10 @@ public class Station {
         this.tempsArret = tempsArret;
     }
     
+    public Station(String nom) {
+        this.nom = nom;
+    }
+    
     public int getId() {
         return id;
     }

@@ -14,11 +14,11 @@ import metro.dijkstra.Tache;
  */
 public class Main {
 
-    //Cette méthode n'a rien à faire dans le main
+    //Cette m√©thode n'a rien √† faire dans le main
     //affiche un chemin
     public static void afficherChemin(List<Station> liste) {
         if ((liste == null) || (liste.isEmpty())) {
-            System.out.print("Itinéraire impossible.\n");
+            System.out.print("Itin√©raire impossible.\n");
         } else {
             for (Station station : liste) {
                 if (station != null) {
@@ -28,7 +28,7 @@ public class Main {
         }
     }
 
-    //Cette méthode n'a rien à faire dans le main
+    //Cette m√©thode n'a rien √† faire dans le main
     //affiche la liste de tous les chemins
     public static void afficherListesChemins(List<Chemin> liste) {
         System.out.println("\nListe chemins : ");
@@ -47,18 +47,26 @@ public class Main {
 
     public static void main(String[] args) {
         Metro metro = new Metro();
-        Utilisateur user = new Utilisateur("Patator", "password");
+        Utilisateur user = new Utilisateur("user", "password");
+        
+        ListeUtilisateurs listeUsers = new ListeUtilisateurs();
+        listeUsers.ajouterUtilisateur(user);
         Scanner sc = new Scanner(System.in);
         Chemin chemin = new Chemin(0);
         Station depart;
         Station arrivee;
         CheminMinStation algoMin = new CheminMinStation(metro);
-
+        ListeStations listeStations = new ListeStations();
+        
         Ligne ligne1 = new Ligne(1, "Ligne 1");
-        Station station1 = new Station(1, "La Défense", 10, 20, 5);
+        Station station1 = new Station(1, "La D√©fense", 10, 20, 5);
         Station station2 = new Station(2, "Porte Maillot", 10, 5, 2);
         Station station3 = new Station(3, "Gare de Lyon", 10, -15, 8);
-        Station station4 = new Station(4, "Château de Vincennes", 0, 20, 7);
+        Station station4 = new Station(4, "Ch√¢teau de Vincennes", 0, 20, 7);
+        listeStations.ajouterStation(station1);
+        listeStations.ajouterStation(station2);
+        listeStations.ajouterStation(station3);
+        listeStations.ajouterStation(station4);
         Voie voie1 = new Voie(1, station1, station2, 20);
         Voie voie2 = new Voie(2, station2, station3, 15);
         Voie voie3 = new Voie(3, station3, station4, 30);
@@ -69,11 +77,17 @@ public class Main {
 
         Ligne ligne2 = new Ligne(2, "Ligne 2");
         Station station5 = new Station(5, "Porte Dauphine", 20, 20, 1);
-        Station station6 = new Station(6, "Charles de Gaulle - Étoile", 25, 30, 7);
+        Station station6 = new Station(6, "Charles de Gaulle - √âtoile", 25, 30, 7);
         Station station7 = new Station(7, "Place de Clichy", 30, 25, 3);
-        Station station8 = new Station(8, "Jaurès", 30, 20, 8);
+        Station station8 = new Station(8, "Jaur√®s", 30, 20, 8);
         Station station9 = new Station(9, "Belleville", 30, 30, 8);
         Station station10 = new Station(10, "Nation", 30, 40, 2);
+        listeStations.ajouterStation(station5);
+        listeStations.ajouterStation(station6);
+        listeStations.ajouterStation(station7);
+        listeStations.ajouterStation(station8);
+        listeStations.ajouterStation(station9);
+        listeStations.ajouterStation(station10);
         Voie voie4 = new Voie(4, station5, station6, 16);
         Voie voie5 = new Voie(5, station6, station7, 30);
         Voie voie6 = new Voie(6, station7, station8, 22);
@@ -88,9 +102,13 @@ public class Main {
 
         Ligne ligne3 = new Ligne(3, "ligne 3");
         Station station11 = new Station(11, "Gambetta", 50, 50, 4);
-        Station station12 = new Station(12, "Bécon", 50, 55, 6);
+        Station station12 = new Station(12, "B√©con", 50, 55, 6);
         Station station13 = new Station(13, "Saint-Lazare", 55, 50, 1);
-        Station station14 = new Station(14, "Opéra", 60, 30, 8);
+        Station station14 = new Station(14, "Op√©ra", 60, 30, 8);
+        listeStations.ajouterStation(station11);
+        listeStations.ajouterStation(station12);
+        listeStations.ajouterStation(station13);
+        listeStations.ajouterStation(station14);
         Voie voie9 = new Voie(9, station1, station11, 3);
         Voie voie10 = new Voie(10, station11, station12, 3);
         Voie voie11 = new Voie(11, station12, station13, 4);
@@ -110,12 +128,44 @@ public class Main {
 
         System.out.println("Welcome to Paris!");
 
+        System.out.println("\n\nQue souhaitez vous faire ? (Veuillez entrer le numéro correspondant)");
+        System.out.println("[1]: INSCRIPTION       \n");
+        System.out.println("[2]: CONNEXION         \n");
+        int selection = sc.nextInt();
+
+
+            switch(selection){
+                case 1:
+                    System.out.println("[1]: INSCRIPTION\n");
+                    System.out.println("Veuillez entrer votre login : \n");
+                    sc.nextLine();
+                    String login = sc.nextLine();
+                    System.out.println("Votre login : "+login);
+                    System.out.println("Veuillez entrer votre mot de passe : \n");
+                    sc.nextLine();
+                    String mdp = sc.nextLine();
+                    System.out.println("Votre mot de passe : "+mdp);
+                    sc.nextLine();
+                    Utilisateur u = new Utilisateur(login,mdp);
+                    u.Inscription(listeUsers,login,mdp);
+                    listeUsers.afficherListeUsers();
+                   
+                break;
+
+                case 2:
+                 System.out.println("***** ITINERAIRE AVEC LE MOINS DE CHANGEMENTS DE LIGNES *****");                
+ 
+                 break;
+            }
+
+         
         metro.afficherTabLignes();
         metro.afficherDetailsLignes();
+        listeStations.afficherListeStations();
 
         user.emplacementCourant();
 
-        //a refaire selon les coordonnées entrées
+        //a refaire selon les coordonn√©es entr√©es
         depart = station1;
         arrivee = station2;
 

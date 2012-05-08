@@ -1,6 +1,7 @@
 package metro;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ListeUtilisateurs {
     
@@ -19,6 +20,19 @@ public class ListeUtilisateurs {
             return true;
         }
         else return false;
+    }
+    
+            public void afficherListeUsers(){
+        System.out.println("\n\nListe des utilisateurs : ");
+        
+        //Boucle sur le champ clé de la HashMap
+        for(Map.Entry<Integer,Utilisateur> entry : listeUtilisateurs.entrySet()){
+            Integer cle = entry.getKey();
+            
+            //Recupere la valeur pour la cle en cours, et ecrit le couple
+            String val = entry.getValue().getLogin().toString();
+            System.out.println(cle+" - "+val);
+        }
     }
 
 }

@@ -18,6 +18,10 @@ public class Utilisateur {
         this.password = password;
     }
 
+    public Utilisateur(){
+        
+    }
+    
     public int getIdUser() {
         return idUser;
     }
@@ -28,6 +32,10 @@ public class Utilisateur {
 
     public ArrayList<Station> getListeStations() {
         return listeStations;
+    }
+    
+    public void ajouterStation(Station s) {
+        listeStations.add(s);
     }
 
     public void setListeStations(ArrayList<Station> listeStations) {
@@ -74,27 +82,29 @@ public class Utilisateur {
         this.preferenceChemin = preferenceChemin;
     }
 
-    public void Inscription(ListeUtilisateurs l) {
-        Utilisateur u = null;
+    public void Inscription(ListeUtilisateurs l,String login, String mdp) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez entrer votre login : \n");
-        String login = sc.nextLine();
-        u.login = login;
-        System.out.println("Veuillez entrer votre mot de passe : \n");
-        String mdp = sc.nextLine();
-        u.password = mdp;
-        System.out.println("Veuillez choisir vos pr√©f√©rences : ");
+        System.out.println("Veuillez choisir vos preferences : ");
         System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide \n");
         System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles \n");
         int choix = sc.nextInt();
-        u.preferenceChemin = choix;
-        System.out.println("Quelle(s) station(s) souhaitez-vous ajouter √† vos pr√©f√©rences ? \n");
-
-        l.ajouterUtilisateur(u);
-        System.out.println("Inscription r√©ussie");
+        this.preferenceChemin = choix;
+        l.ajouterUtilisateur(this);
+        System.out.println("Inscription reussie\n");
 
     }
 
+    public void AjoutPreferenceStations(Utilisateur u, Station s){
+        /*System.out.println("Quelle(s) station(s) souhaitez-vous ajouter a vos preferences ? \n");
+        boolean ajout=true;
+        Scanner sc = new Scanner(System.in);
+        String station = sc.nextLine();
+        Station st = new Station(station);
+        
+        if()*/
+        u.ajouterStation(s);
+    }
+    
     public void Connexion(Utilisateur u, ListeUtilisateurs l) { // Fonction qui connecte l'utilisateur √† son compte
         /*
          * System.out.println("Veuillez entrer votre login : "); String login =
@@ -103,15 +113,16 @@ public class Utilisateur {
          */
         boolean b = l.contientUtilisateur(u);
         if (b == true) {
-            System.out.println("Vous √™tes connect√©");
+            System.out.println("Vous etes connecte");
         } else {
-            System.out.println("Vous n'√™tes pas connect√©");
+            System.out.println("Vous n'etes pas connecte");
         }
 
         System.out.println("le chemin min est : ");
     }
 
-    public void Deconnexion() {
+    public void Deconnexion(Utilisateur u) {
+        System.out.println("Vous êtes déconnecté");
     }
 
     public void emplacementCourant() {
@@ -126,7 +137,7 @@ public class Utilisateur {
         this.emplX = x;
         this.emplY = y;
 
-        System.out.println("Vous √™tes en (" + x + " ; " + y + ").");
+        System.out.println("Vous etes en (" + x + " ; " + y + ").");
 
     }
 
@@ -199,7 +210,7 @@ public class Utilisateur {
                 }
             }
         }
-        System.out.println("Station la plus proche : " + proche + " √† " + dist + "m.");
+        System.out.println("Station la plus proche : " + proche + " a " + dist + "m.");
     }
     //Ne marche pas car stationPlusProche renvoie toujours le meme resultat.....
     /*
