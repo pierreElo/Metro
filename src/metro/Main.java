@@ -148,8 +148,12 @@ public class Main {
                     sc.nextLine();
                     String mdp = sc.nextLine();
                     sc.nextLine();
-                    Utilisateur u = new Utilisateur(login,mdp);
-                    u.Inscription(listeUsers,login,mdp);
+                    System.out.println("\nVeuillez choisir vos preferences : ");
+                    System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide ");
+                    System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
+                    int choix = sc.nextInt();
+                    Utilisateur u = new Utilisateur(login,mdp,choix);
+                    u.Inscription(listeUsers,login,mdp,choix);
                     listeUsers.afficherListeUsers();
                    
                 break;
@@ -163,8 +167,37 @@ public class Main {
                     sc.nextLine();
                     String mdp2 = sc.nextLine();
                     Utilisateur u2 = new Utilisateur(login2,mdp2);
+                    
                     u2.Connexion(listeUsers);
                     System.out.print("Vous préférez le chemin : "+u2.getPreferenceChemin());
+                     
+                             
+        metro.afficherTabLignes();
+        metro.afficherDetailsLignes();
+        listeStations.afficherListeStations();
+
+        user.emplacementCourant();
+
+        //a refaire selon les coordonn√©es entr√©es
+        depart = station1;
+        arrivee = station2;
+
+        //chemin=CheminMinStation.algoRecherche(depart, arrivee);
+        //afficherChemin(chemin);
+        
+        //user.stationPlusProche(metro);
+        //user.troisPlusProches(metro);
+
+        Station dep = station1;
+        Station arr = station4;
+        System.out.println("Dijkstra");
+        AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
+        ArrayList<Tache> res = a.resoudre();
+        for (int i = 0; i < res.size(); i++) {
+            Tache tache = res.get(i);
+            System.out.println(tache.getTache().getNom());
+        }
+                    
                  break;
                  case 6:
                     System.out.println("Merci et à Bientot");

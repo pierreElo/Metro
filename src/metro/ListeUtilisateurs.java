@@ -20,6 +20,16 @@ public class ListeUtilisateurs {
         }
     }
 
+    public HashMap<String, Utilisateur> getListeUtilisateurs() {
+        return listeUtilisateurs;
+    }
+
+    public void setListeUtilisateurs(HashMap<String, Utilisateur> listeUtilisateurs) {
+        this.listeUtilisateurs = listeUtilisateurs;
+    }
+    
+    
+
     public int getId() {
         return id;
     }
@@ -32,12 +42,14 @@ public class ListeUtilisateurs {
     
     public boolean contientEnregistrement(String login, String password){
         
-       boolean contient = false;
        if(listeUtilisateurs.get(login) != null){
+           
            if (password.equals(password)){
                return true;
            }
-           
+           if (!password.equals(password)){
+               return false;
+           }
        }
        return false;
     }
