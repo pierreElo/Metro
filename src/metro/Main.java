@@ -48,18 +48,20 @@ public class Main {
     public static void main(String[] args) {
         Metro metro = new Metro();
         ListeUtilisateurs listeUsers = new ListeUtilisateurs();
-        Utilisateur user2 = new Utilisateur("user2", "password",1);
-        Utilisateur user = new Utilisateur("user", "password",0);
+
+        /*
+         * Utilisateur user = new Utilisateur("user", "password", 0);
+         * Utilisateur user2 = new Utilisateur("user2", "password", 1);
+         */
+        Utilisateur user = new Utilisateur("user", "password", true);
+        Utilisateur user2 = new Utilisateur("user2", "password", false);
+
         listeUsers.ajouterUtilisateur(user);
         listeUsers.ajouterUtilisateur(user2);
-        listeUsers.afficherListeUsers();
-        Scanner sc = new Scanner(System.in);
-        Chemin chemin = new Chemin(0);
-        Station depart;
-        Station arrivee;
+
         CheminMinStation algoMin = new CheminMinStation(metro);
         ListeStations listeStations = new ListeStations();
-        
+
         Ligne ligne1 = new Ligne(1, "Ligne 1");
         Station station1 = new Station(1, "La Defense", 10, 20, 5);
         Station station2 = new Station(2, "Porte Maillot", 10, 5, 2);
@@ -123,81 +125,103 @@ public class Main {
         ligne3.ajouterVoie(voie13);
         metro.ajouterLigne(ligne3);
 
-        /*for (Map.Entry<Integer, Ligne> en : metro.getTabLignes().entrySet()) {
-            Ligne ligne = en.getValue();
-            System.out.println(ligne.getNom());
-        }*/
+        /*
+         * for (Map.Entry<Integer, Ligne> en : metro.getTabLignes().entrySet())
+         * { Ligne ligne = en.getValue(); System.out.println(ligne.getNom()); }
+         */
+
+        listeUsers.afficherListeUsers();
+        Scanner sc = new Scanner(System.in);
+        Chemin chemin = new Chemin(0);
+        Station depart;
+        Station arrivee;
 
         System.out.println("Welcome to Paris!");
 
         System.out.println("\n\nQue souhaitez vous faire ? (Veuillez entrer le numéro correspondant)");
         System.out.println("[1]: INSCRIPTION           ");
         System.out.println("[2]: CONNEXION             ");
+        System.out.println("[6]: QUITTER");
         int selection = sc.nextInt();
+        switch (selection) {
+            case 1:
+                System.out.println("[1]: INSCRIPTION\n");
+                System.out.println("Veuillez entrer votre login : ");
+                sc.nextLine();
+                String login = sc.nextLine();
+                System.out.println("Veuillez entrer votre mot de passe : ");
+                sc.nextLine();
+                String mdp = sc.nextLine();
+                sc.nextLine();
+                Utilisateur u = new Utilisateur(login, mdp);
+                u.Inscription(listeUsers, login, mdp);
+                listeUsers.afficherListeUsers();
 
-
-            switch(selection){
-                case 1:
-                    System.out.println("[1]: INSCRIPTION\n");
-                    System.out.println("Veuillez entrer votre login : ");
-                    sc.nextLine();
-                    String login = sc.nextLine();
-                    System.out.println("Veuillez entrer votre mot de passe : ");
-                    sc.nextLine();
-                    String mdp = sc.nextLine();
-                    sc.nextLine();
-                    Utilisateur u = new Utilisateur(login,mdp);
-                    u.Inscription(listeUsers,login,mdp);
-                    listeUsers.afficherListeUsers();
-                   
                 break;
 
-                case 2:
-                    System.out.println("[2]: CONNEXION\n");
-                    System.out.println("Veuillez entrer votre login : ");
-                    sc.nextLine();
-                    String login2 = sc.nextLine();
-                    System.out.println("Veuillez entrer votre mot de passe : ");
-                    sc.nextLine();
-                    String mdp2 = sc.nextLine();
-                    Utilisateur u2 = new Utilisateur(login2,mdp2);
-                    u2.Connexion(listeUsers);
-                    System.out.print("Vous préférez le chemin : "+u2.getPreferenceChemin());
-                 break;
-                 case 6:
-                    System.out.println("Merci et à Bientot");
-                 break;
-                 default : System.out.print("mauvais choix");
-            }
-        
-
-
-         
-        metro.afficherTabLignes();
-        metro.afficherDetailsLignes();
-        listeStations.afficherListeStations();
+            case 2:
+                System.out.println("[2]: CONNEXION\n");
+                System.out.println("Veuillez entrer votre login : ");
+                sc.nextLine();
+                String login2 = sc.nextLine();
+                System.out.println("Veuillez entrer votre mot de passe : ");
+                sc.nextLine();
+                String mdp2 = sc.nextLine();
+                Utilisateur u2 = new Utilisateur(login2, mdp2);
+                u2.Connexion(listeUsers);
+                //System.out.println("Vous préférez le chemin : " + u2.getPreferenceChemin());
+                break;
+            case 6:
+                System.out.println("Merci et à bientôt");
+                break;
+            default:
+                System.out.print("mauvais choix");
+        }
 
         user.emplacementCourant();
 
-        //a refaire selon les coordonn√©es entr√©es
-        depart = station1;
-        arrivee = station2;
+        while (true) {
+            System.out.println("Menu");
+            System.out.println("[1]: Liste des lignes");
+            System.out.println("[2]: Liste des stations");
+            System.out.println("[3]: Afficher les 3 stations les plus proches");
+            System.out.println("[4]: Itinéraire franchissant le moins de station possible");
+            System.out.println("[5]: Itinéraire en temps le plus court");
+            int selection2 = sc.nextInt();
+            switch (selection2) {
+                case 1:
+                    metro.afficherTabLignes();
+                    metro.afficherDetailsLignes();
+                    break;
+                case 2:
+                    listeStations.afficherListeStations();
+                    break;
+                case 3:
+                    System.out.println("3 stations les plus proches : ");
+                    ArrayList<Station> stations = user.listeStations(metro);
+                    user.stationsPlusProches(metro, stations, 1);
+                    break;
+                case 4:
+                    //a refaire selon les coordonnées entrées
+                    depart = station1;
+                    arrivee = station2;
 
-        //chemin=CheminMinStation.algoRecherche(depart, arrivee);
-        //afficherChemin(chemin);
-        
-        System.out.println("3 stations les plus proches : ");
-        ArrayList<Station> stations = user.listeStations(metro);
-        user.stationsPlusProches(metro,stations,1);
-
-        Station dep = station1;
-        Station arr = station4;
-        System.out.println("Dijkstra");
-        AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
-        ArrayList<Tache> res = a.resoudre();
-        for (int i = 0; i < res.size(); i++) {
-            Tache tache = res.get(i);
-            System.out.println(tache.getTache().getNom());
+                    //chemin=CheminMinStation.algoRecherche(depart, arrivee);
+                    //afficherChemin(chemin);
+                    break;
+                case 5:
+                    Station dep = station1;
+                    Station arr = station4;
+                    System.out.println("Dijkstra");
+                    AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
+                    ArrayList<Tache> res = a.resoudre();
+                    for (int i = 0; i < res.size(); i++) {
+                        Tache tache = res.get(i);
+                        System.out.println(tache.getTache().getNom());
+                    }
+                default:
+                    break;
+            }
         }
     }
 }

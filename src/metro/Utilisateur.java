@@ -116,7 +116,7 @@ public class Utilisateur {
         this.preferenceChemin = choix;
         this.idUser = l.getId();
         l.ajouterUtilisateur(this);
-        System.out.println("Inscription reussie\n");
+        System.out.println("Inscription réussie\n");
 
     }
 
@@ -141,12 +141,10 @@ public class Utilisateur {
 
         boolean b = l.contientEnregistrement(this.login, this.password);
         if (b == true) {
-            System.out.println("Vous etes connecte");
+            System.out.println("Vous êtes connecté");
         } else {
-            System.out.println("Vous n'etes pas connecte");
+            System.out.println("Vous n'êtes pas connecté");
         }
-
-        System.out.println("le chemin min est : ");
     }
 
     public void Deconnexion(Utilisateur u) {

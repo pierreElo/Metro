@@ -27,16 +27,6 @@ public class ListeUtilisateurs {
         this.id = id;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    
-    
     public boolean contientEnregistrement(String login, String password){
         
        boolean contient = false;
