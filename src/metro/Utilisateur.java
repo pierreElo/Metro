@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Utilisateur {
 
+    private int idUser;
     private String login;
     private String password;
     private boolean estAdmin;
@@ -31,6 +32,14 @@ public class Utilisateur {
         return listeUtilisateurs;
     }
  
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
     public ArrayList<Station> getListeStations() {
         return listeStations;
     }
@@ -98,6 +107,7 @@ public class Utilisateur {
         System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
         int choix = sc.nextInt();
         this.preferenceChemin = choix;
+        this.idUser = l.getId();
         l.ajouterUtilisateur(this);
         System.out.println("Inscription reussie\n");
 

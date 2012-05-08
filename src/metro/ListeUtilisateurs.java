@@ -7,6 +7,7 @@ import java.util.Map;
 public class ListeUtilisateurs {
     
     private HashMap<String,Utilisateur> listeUtilisateurs;
+    private int id = 1;
 
     public ListeUtilisateurs() {
         listeUtilisateurs = new HashMap<String, Utilisateur>();
@@ -14,10 +15,21 @@ public class ListeUtilisateurs {
       
     public void ajouterUtilisateur(Utilisateur u){
         if (u!=null){
-    listeUtilisateurs.put(u.getLogin(), u);
+        listeUtilisateurs.put(u.getLogin(), u);
+        this.id++;
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
+    
     public boolean contientEnregistrement(String login, String password){
         
        boolean contient = false;
