@@ -48,8 +48,8 @@ public class Main {
     public static void main(String[] args) {
         Metro metro = new Metro();
         ListeUtilisateurs listeUsers = new ListeUtilisateurs();
-        Utilisateur user2 = new Utilisateur("user2", "password");
-        Utilisateur user = new Utilisateur("user", "password");
+        Utilisateur user2 = new Utilisateur("user2", "password",1);
+        Utilisateur user = new Utilisateur("user", "password",0);
         listeUsers.ajouterUtilisateur(user);
         listeUsers.ajouterUtilisateur(user2);
         listeUsers.afficherListeUsers();
@@ -136,7 +136,8 @@ public class Main {
         int selection = sc.nextInt();
 
 
-            switch(selection){
+        
+        switch(selection){
                 case 1:
                     System.out.println("[1]: INSCRIPTION\n");
                     System.out.println("Veuillez entrer votre login : \n");
@@ -162,10 +163,15 @@ public class Main {
                     String mdp2 = sc.nextLine();
                     Utilisateur u2 = new Utilisateur(login2,mdp2);
                     u2.Connexion(listeUsers);
- 
+                    System.out.print("Vous préférez le chemin : "+u2.getPreferenceChemin());
                  break;
-   
+                 case 6:
+                    System.out.println("Merci et à Bientot");
+                 break;
+                 default : System.out.print("mauvais choix");
             }
+        
+
 
          
         metro.afficherTabLignes();
