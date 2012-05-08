@@ -41,8 +41,7 @@ public class UtilisateurTest {
         System.out.println("getIdUser");
         Utilisateur instance = null;
         int expResult = 0;
-        int result = instance.getIdUser();
-        assertEquals(expResult, result);
+
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -55,7 +54,6 @@ public class UtilisateurTest {
         System.out.println("setIdUser");
         int idUser = 0;
         Utilisateur instance = null;
-        instance.setIdUser(idUser);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
