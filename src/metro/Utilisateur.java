@@ -103,7 +103,7 @@ public class Utilisateur {
     public void Inscription(ListeUtilisateurs l,String login, String mdp) {
         Scanner sc = new Scanner(System.in);
         System.out.println("\nVeuillez choisir vos preferences : ");
-        System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide ");
+        System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide");
         System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
         int choix = sc.nextInt();
         this.preferenceChemin = choix;
@@ -133,17 +133,17 @@ public class Utilisateur {
 
         boolean b = l.contientEnregistrement(this.login,this.password);
         if (b == true) {
-            System.out.println("Vous etes connecté");
+            System.out.println("Vous etes connecte");
         } 
         else {
-            System.out.println("Vous n'etes pas connecté");
+            System.out.println("Vous n'etes pas connecte");
         }
 
         System.out.println("le chemin min est : ");
     }
 
     public void Deconnexion(Utilisateur u) {
-        System.out.println("Vous êtes déconnecté");
+        System.out.println("Vous etes deconnecte");
     }
 
     public void emplacementCourant() {
