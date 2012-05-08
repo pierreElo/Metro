@@ -50,6 +50,8 @@ public class Utilisateur {
     public ArrayList<Station> getListeStations() {
         return listeStations;
     }
+    
+    
 
     public void ajouterStation(Station s) {
         listeStations.add(s);
@@ -107,17 +109,9 @@ public class Utilisateur {
         this.preferenceChemin = preferenceChemin;
     }
 
-    public void Inscription(ListeUtilisateurs l, String login, String mdp) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("\nVeuillez choisir vos preferences : ");
-        System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide");
-        System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
-        int choix = sc.nextInt();
-        this.preferenceChemin = choix;
-        this.idUser = l.getId();
+    public void Inscription(ListeUtilisateurs l,String login, String mdp) {
         l.ajouterUtilisateur(this);
         System.out.println("Inscription réussie\n");
-
     }
 
     public void AjoutPreferenceStations(Utilisateur u, Station s) {
@@ -134,11 +128,10 @@ public class Utilisateur {
 
     public boolean Connexion(ListeUtilisateurs l) { // Fonction qui connecte l'utilisateur √† son compte
         boolean b = l.contientEnregistrement(this.login, this.password);
-        if (b == true) {
-            System.out.println("Vous êtes connecté");
-        } else {
-            System.out.println("Vous n'êtes pas connecté");
-        }
+        if (b)
+            System.out.println("Vous etes connecté");
+        else
+            System.out.println("Vous n'etes pas connecté");
         return b;
     }
 

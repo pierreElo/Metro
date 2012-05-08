@@ -149,6 +149,8 @@ public class Main {
             System.out.println("[5]: Itinéraire en temps le plus court");
             if (connecte.estAdmin()) {
                 System.out.println("[6]: ADMIN - Liste des utilisateurs");
+                System.out.println("[7]: ADMIN - Signaler un incident sur une station");
+                System.out.println("[8]: ADMIN - Retirer un incident sur une station");
             }
 
             int selection2 = sc.nextInt();
@@ -186,15 +188,14 @@ public class Main {
                     break;
                 case 5:
                     Scanner scStr4 = new Scanner(System.in);
-                    Station dep = station1;
-                    Station arr = station4;
+                    Station dep;
+                    Station arr;
                     System.out.println("Spécifier la station de départ (identifiant) : ");
                     int idDepart2 = scStr4.nextInt();
                     dep = listeStations.getStation(idDepart2);
                     System.out.println("Spécifier la station d'arrivée (identifiant) : ");
                     int idArrivee2 = scStr4.nextInt();
                     arr = listeStations.getStation(idArrivee2);
-                    System.out.println("Dijkstra");
                     AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
                     ArrayList<Tache> res = a.resoudre();
                     for (int i = 0; i < res.size(); i++) {
@@ -204,6 +205,20 @@ public class Main {
                     break;
                 case 6:
                     listeUsers.afficherListeUsers();
+                    break;
+                case 7:
+                    Scanner scStr5 = new Scanner(System.in);
+                    System.out.println("Spécifier la station à signaler (identifiant) : ");
+                    int id = scStr5.nextInt();
+                    Station s = listeStations.getStation(id);
+                    s.setIncident(true);
+                    break;
+                case 8:
+                    Scanner scStr6 = new Scanner(System.in);
+                    System.out.println("Spécifier la station où retirer l'incident (identifiant) : ");
+                    int id2 = scStr6.nextInt();
+                    Station s2 = listeStations.getStation(id2);
+                    s2.setIncident(false);
                     break;
                 default:
                     break;
