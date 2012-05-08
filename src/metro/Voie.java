@@ -46,5 +46,17 @@ public class Voie {
 
     public void setIncident(boolean incident) {
         this.incident = incident;
-    } 
+    }
+    
+    public boolean contientStation(Station s){
+        boolean trouve = this.stationAmont.getId()==s.getId()||this.stationAval.getId()==s.getId() ? true : false;
+        return trouve; 
+    }
+    
+    public Station retourneStationO(Station s){
+        if(this.stationAmont.getId()==s.getId())
+            return this.stationAval;
+        else
+            return this.stationAmont;
+    }
 }

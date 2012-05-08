@@ -2,19 +2,62 @@ package metro;
 
 import java.util.*;
 
-
 public class Utilisateur {
 
-    
+    private int idUser;
     private String login;
     private String password;
+    private boolean estAdmin;
+    private int preferenceChemin; // 0=chemin le + rapide 1= chemin avec le moins de changements
+    private ArrayList<Station> listeStations; // liste des stations par lesquelles l'utilisateur souhaite passer
     private Set<Utilisateur> listeUtilisateurs;
     private int emplX;
     private int emplY;
-    
+
+    public Utilisateur(String login, String password, boolean estAdmin) {
+        this.login = login;
+        this.password = password;
+        this.estAdmin = estAdmin;
+    }
     public Utilisateur(String login, String password) {
         this.login = login;
         this.password = password;
+    }
+
+    public boolean isEstAdmin() {
+        return estAdmin;
+    }
+
+    public Set<Utilisateur> getListeUtilisateurs() {
+        return listeUtilisateurs;
+    }
+ 
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public ArrayList<Station> getListeStations() {
+        return listeStations;
+    }
+    
+    public void ajouterStation(Station s) {
+        listeStations.add(s);
+    }
+
+    public void setListeStations(ArrayList<Station> listeStations) {
+        this.listeStations = listeStations;
+    }
+
+    public void setEstAdmin(boolean estAdmin) {
+        this.estAdmin = estAdmin;
+    }
+
+    public void setListeUtilisateurs(Set<Utilisateur> listeUtilisateurs) {
+        this.listeUtilisateurs = listeUtilisateurs;
     }
 
     public String getLogin() {
@@ -32,67 +75,91 @@ public class Utilisateur {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public int getEmplX(){
+
+    public int getEmplX() {
         return this.emplX;
     }
-    
-    public void setEmplX(int x){
+
+    public void setEmplX(int x) {
         this.emplX = x;
     }
-    
-    public int getEmplY(){
+
+    public int getEmplY() {
         return this.emplY;
     }
-    
-    public void setEmplY(int y){
+
+    public void setEmplY(int y) {
         this.emplY = y;
     }
-    
-    public void Inscription(){
+
+    public int getPreferenceChemin() {
+        return preferenceChemin;
+    }
+
+    public void setPreferenceChemin(int preferenceChemin) {
+        this.preferenceChemin = preferenceChemin;
+    }
+
+    public void Inscription(ListeUtilisateurs l,String login, String mdp) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez entrer votre login : ");
-        String login = sc.nextLine();
-        System.out.println("Veuillez entrer votre mot de passe : ");
-        String mdp = sc.nextLine();
-        Utilisateur u = new Utilisateur(login, mdp);
-        listeUtilisateurs.add(u);
-        if(listeUtilisateurs.add(u) == false)
-         System.out.println("Inscription échouée");
-        else 
-         System.out.println("Inscription réussie");
+        System.out.println("\nVeuillez choisir vos preferences : ");
+        System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide ");
+        System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
+        int choix = sc.nextInt();
+        this.preferenceChemin = choix;
+        this.idUser = l.getId();
+        l.ajouterUtilisateur(this);
+        System.out.println("Inscription reussie\n");
+
+    }
+
+    public void AjoutPreferenceStations(Utilisateur u, Station s){
+        /*System.out.println("Quelle(s) station(s) souhaitez-vous ajouter a vos preferences ? \n");
+        boolean ajout=true;
+        Scanner sc = new Scanner(System.in);
+        String station = sc.nextLine();
+        Station st = new Station(station);
+        
+        if()*/
+        u.ajouterStation(s);
     }
     
-    public void Connexion(){
-        Utilisateur setlog;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez entrer votre login : ");
-        String login = sc.nextLine();
-        System.out.println("Veuillez entrer votre mot de passe : ");
-        String mdp = sc.nextLine();
+    public void Connexion(ListeUtilisateurs l) { // Fonction qui connecte l'utilisateur √† son compte
+        /*
+         * System.out.println("Veuillez entrer votre login : "); String login =
+         * sc.nextLine(); System.out.println("Veuillez entrer votre mot de passe
+         * : "); String mdp = sc.nextLine();
+         */
+
+        boolean b = l.contientEnregistrement(this.login,this.password);
+        if (b == true) {
+            System.out.println("Vous etes connecté");
+        } 
+        else {
+            System.out.println("Vous n'etes pas connecté");
+        }
+
         System.out.println("le chemin min est : ");
-        
     }
-    
-    public void Deconnexion(){
-        
+
+    public void Deconnexion(Utilisateur u) {
+        System.out.println("Vous êtes déconnecté");
     }
-    
-    
-    public void emplacementCourant(){
+
+    public void emplacementCourant() {
         //x entre -5 et 35 (x d'1 station entre 0 et 30)
-    	Random r1 = new Random();
-    	int x = -5 + r1.nextInt(35);
-        
+        Random r1 = new Random();
+        int x = -5 + r1.nextInt(35);
+
         //y entre -20 et 40 (y d'1 station entre -15 et 40)
-    	Random r2 = new Random();
-    	int y = -20 + r2.nextInt(45);
-        
+        Random r2 = new Random();
+        int y = -20 + r2.nextInt(45);
+
         this.emplX = x;
         this.emplY = y;
-        
-        System.out.println("Vous êtes en ("+x+" ; "+y+").");
-        
+
+        System.out.println("Vous etes en (" + x + " ; " + y + ").");
+
     }
     
     

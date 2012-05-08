@@ -4,12 +4,13 @@
  */
 package metro;
 
+import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Anne
+ * @author lily277
  */
 public class UtilisateurTest {
     
@@ -30,6 +31,71 @@ public class UtilisateurTest {
     
     @After
     public void tearDown() {
+    }
+
+    /**
+     * Test of getIdUser method, of class Utilisateur.
+     */
+    @Test
+    public void testGetIdUser() {
+        System.out.println("getIdUser");
+        Utilisateur instance = null;
+        int expResult = 0;
+
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setIdUser method, of class Utilisateur.
+     */
+    @Test
+    public void testSetIdUser() {
+        System.out.println("setIdUser");
+        int idUser = 0;
+        Utilisateur instance = null;
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getListeStations method, of class Utilisateur.
+     */
+    @Test
+    public void testGetListeStations() {
+        System.out.println("getListeStations");
+        Utilisateur instance = null;
+        ArrayList expResult = null;
+        ArrayList result = instance.getListeStations();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ajouterStation method, of class Utilisateur.
+     */
+    @Test
+    public void testAjouterStation() {
+        System.out.println("ajouterStation");
+        Station station1 = new Station(1, "La Défense", 10, 20, 5);
+        Station station2 = new Station(2, "Porte Maillot", 10, 5, 2);
+        Utilisateur toto = new Utilisateur("toto","pass", false);
+        toto.ajouterStation(station1);
+        
+    }
+
+    /**
+     * Test of setListeStations method, of class Utilisateur.
+     */
+    @Test
+    public void testSetListeStations() {
+        System.out.println("setListeStations");
+        ArrayList<Station> listeStations = null;
+        Utilisateur instance = null;
+        instance.setListeStations(listeStations);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -141,13 +207,55 @@ public class UtilisateurTest {
     }
 
     /**
+     * Test of getPreferenceChemin method, of class Utilisateur.
+     */
+    @Test
+    public void testGetPreferenceChemin() {
+        System.out.println("getPreferenceChemin");
+        Utilisateur instance = null;
+        int expResult = 0;
+        int result = instance.getPreferenceChemin();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setPreferenceChemin method, of class Utilisateur.
+     */
+    @Test
+    public void testSetPreferenceChemin() {
+        System.out.println("setPreferenceChemin");
+        int preferenceChemin = 0;
+        Utilisateur instance = null;
+        instance.setPreferenceChemin(preferenceChemin);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
      * Test of Inscription method, of class Utilisateur.
      */
     @Test
     public void testInscription() {
         System.out.println("Inscription");
+        ListeUtilisateurs l = null;
         Utilisateur instance = null;
-        instance.Inscription();
+
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of AjoutPreferenceStations method, of class Utilisateur.
+     */
+    @Test
+    public void testAjoutPreferenceStations() {
+        System.out.println("AjoutPreferenceStations");
+        Utilisateur u = null;
+        Station s = null;
+        Utilisateur instance = null;
+        instance.AjoutPreferenceStations(u, s);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -158,8 +266,10 @@ public class UtilisateurTest {
     @Test
     public void testConnexion() {
         System.out.println("Connexion");
+        Utilisateur u = null;
+        ListeUtilisateurs l = null;
         Utilisateur instance = null;
-        instance.Connexion();
+        instance.Connexion(l);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -171,7 +281,7 @@ public class UtilisateurTest {
     public void testDeconnexion() {
         System.out.println("Deconnexion");
         Utilisateur instance = null;
-        instance.Deconnexion();
+        
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -192,11 +302,11 @@ public class UtilisateurTest {
      * Test of stationPlusProche method, of class Utilisateur.
      */
     @Test
-    public void testStationsPlusProches() {
-        System.out.println("stationsPlusProches");
+    public void testStationPlusProche() {
+        System.out.println("stationPlusProche");
         Metro m = null;
         Utilisateur instance = null;
-        instance.stationsPlusProches(m);
+        instance.stationPlusProche(m);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

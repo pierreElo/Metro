@@ -1,8 +1,9 @@
 
-package metro;
+package metro.algoChangementMin;
 
 import java.util.ArrayList;
 import java.util.List;
+import metro.Station;
 
 public class Chemin {
     private int coutDistance;

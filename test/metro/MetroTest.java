@@ -5,11 +5,10 @@
 package metro;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import static org.junit.Assert.assertEquals;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -138,7 +137,5 @@ public class MetroTest {
          
         //verification des éléments contenu dans la liste
          assertEquals(metro.getAllVoie().get(5).getStationAmont().getId(),6);
-
-        
     }
 }
