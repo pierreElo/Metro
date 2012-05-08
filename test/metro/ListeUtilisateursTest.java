@@ -39,22 +39,24 @@ public class ListeUtilisateursTest {
     public void testAjouterUtilisateur() {
         System.out.println("ajouterUtilisateur");
         Utilisateur u = new Utilisateur("toto","pass",false);
+        Utilisateur u2 = new Utilisateur("toto","pass",1);
         ListeUtilisateurs instance = new ListeUtilisateurs();
         instance.ajouterUtilisateur(u);
+        instance.ajouterUtilisateur(u2);
     }
 
     /**
      * Test of contientUtilisateur method, of class ListeUtilisateurs.
      */
     @Test
-    public void testContientUtilisateur() {
+    public void testContientEnregistrement() {
         System.out.println("contientUtilisateur");
         Utilisateur u1 = new Utilisateur("toto","pass",false);
         Utilisateur u2 = new Utilisateur("titi","pass2",false);
-        ListeUtilisateurs instance = new ListeUtilisateurs();
-        instance.ajouterUtilisateur(u1);
+        ListeUtilisateurs l = new ListeUtilisateurs();
+        l.ajouterUtilisateur(u1);
         boolean expResult = false;
-
-        assertEquals(u2, false);
+        assertEquals(l.contientEnregistrement("tota","pass"), false);
+        assertEquals(l.contientEnregistrement("toto","pass"), true);
     }
 }

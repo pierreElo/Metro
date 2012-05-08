@@ -1,3 +1,4 @@
+
 package metro;
 
 import java.util.ArrayList;
@@ -146,15 +147,18 @@ public class Main {
         switch (selection) {
             case 1:
                 System.out.println("[1]: INSCRIPTION\n");
-                System.out.println("Veuillez entrer votre login : ");
+                System.out.println("Veuillez entrer votre login : \n");
                 sc.nextLine();
                 String login = sc.nextLine();
-                System.out.println("Veuillez entrer votre mot de passe : ");
+                System.out.println("Veuillez entrer votre mot de passe : \n");
                 sc.nextLine();
                 String mdp = sc.nextLine();
-                sc.nextLine();
-                Utilisateur u = new Utilisateur(login, mdp);
-                u.Inscription(listeUsers, login, mdp);
+                System.out.println("\nVeuillez choisir vos preferences : ");
+                System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide ");
+                System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
+                int choix = sc.nextInt();
+                Utilisateur u = new Utilisateur(login,mdp,choix);
+                u.Inscription(listeUsers,login,mdp,choix);
                 listeUsers.afficherListeUsers();
 
                 break;
@@ -172,7 +176,7 @@ public class Main {
                 //System.out.println("Vous préférez le chemin : " + u2.getPreferenceChemin());
                 break;
             case 6:
-                System.out.println("Merci et a bientot");
+                System.out.println("Merci et à bientôt");
                 break;
             default:
                 System.out.print("mauvais choix");
@@ -212,7 +216,7 @@ public class Main {
                 case 5:
                     Station dep = station1;
                     Station arr = station4;
-                    System.out.println("DIJKSTRA");
+                    System.out.println("Dijkstra");
                     AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
                     ArrayList<Tache> res = a.resoudre();
                     for (int i = 0; i < res.size(); i++) {
@@ -225,3 +229,4 @@ public class Main {
         }
     }
 }
+
