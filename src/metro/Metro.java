@@ -28,8 +28,6 @@ public class Metro {
     public void setTabLignes(HashMap<Integer, Ligne> tabLignes) {
         this.tabLignes = tabLignes;
     }
-
-    
     
     public List<Voie> getAllVoie (){
         List<Voie> v = new ArrayList<Voie>();
@@ -78,7 +76,7 @@ public class Metro {
             v = l.getListeVoies();
             
             for(int i=0 ; i<v.size() ; i++){
-                System.out.println((String)(v.get(i).getStationAmont().getNom())+" -> "+(String)(v.get(i).getStationAval().getNom()));
+                System.out.println((String)(v.get(i).getStationAmont().getNom())+" -> "+(String)(v.get(i).getStationAval().getNom())+" | Temps de parcours : "+v.get(i).getTempsParcours()+"min.");
             }
             System.out.println("");
         }

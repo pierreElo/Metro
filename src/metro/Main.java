@@ -1,11 +1,11 @@
 
 package metro;
 
-import metro.algoChangementMin.Chemin;
-import metro.algoChangementMin.CheminMinStation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import metro.algoChangementMin.Chemin;
+import metro.algoChangementMin.CheminMinStation;
 import metro.dijkstra.AlgorithmeDijkstra;
 import metro.dijkstra.Tache;
 
@@ -15,11 +15,11 @@ import metro.dijkstra.Tache;
  */
 public class Main {
 
-    //Cette m√©thode n'a rien √† faire dans le main
+    //Cette methode n'a rien a faire dans le main
     //affiche un chemin
     public static void afficherChemin(List<Station> liste) {
         if ((liste == null) || (liste.isEmpty())) {
-            System.out.print("Itin√©raire impossible.\n");
+            System.out.print("Itineraire impossible.\n");
         } else {
             for (Station station : liste) {
                 if (station != null) {
@@ -29,7 +29,7 @@ public class Main {
         }
     }
 
-    //Cette m√©thode n'a rien √† faire dans le main
+    //Cette methode n'a rien a faire dans le main
     //affiche la liste de tous les chemins
     public static void afficherListesChemins(List<Chemin> liste) {
         System.out.println("\nListe chemins : ");
@@ -49,23 +49,25 @@ public class Main {
     public static void main(String[] args) {
         Metro metro = new Metro();
         ListeUtilisateurs listeUsers = new ListeUtilisateurs();
-        Utilisateur user2 = new Utilisateur("user2", "password",1);
-        Utilisateur user = new Utilisateur("user", "password",0);
+
+        /*
+         * Utilisateur user = new Utilisateur("user", "password", 0);
+         * Utilisateur user2 = new Utilisateur("user2", "password", 1);
+         */
+        Utilisateur user = new Utilisateur("user", "password", true);
+        Utilisateur user2 = new Utilisateur("user2", "password", false);
+
         listeUsers.ajouterUtilisateur(user);
         listeUsers.ajouterUtilisateur(user2);
-        listeUsers.afficherListeUsers();
-        Scanner sc = new Scanner(System.in);
-        Chemin chemin = new Chemin(0);
-        Station depart;
-        Station arrivee;
+
         CheminMinStation algoMin = new CheminMinStation(metro);
         ListeStations listeStations = new ListeStations();
-        
+
         Ligne ligne1 = new Ligne(1, "Ligne 1");
-        Station station1 = new Station(1, "La D√©fense", 10, 20, 5);
+        Station station1 = new Station(1, "La Defense", 10, 20, 5);
         Station station2 = new Station(2, "Porte Maillot", 10, 5, 2);
         Station station3 = new Station(3, "Gare de Lyon", 10, -15, 8);
-        Station station4 = new Station(4, "Ch√¢teau de Vincennes", 0, 20, 7);
+        Station station4 = new Station(4, "Chateau de Vincennes", 0, 20, 7);
         listeStations.ajouterStation(station1);
         listeStations.ajouterStation(station2);
         listeStations.ajouterStation(station3);
@@ -80,9 +82,9 @@ public class Main {
 
         Ligne ligne2 = new Ligne(2, "Ligne 2");
         Station station5 = new Station(5, "Porte Dauphine", 20, 20, 1);
-        Station station6 = new Station(6, "Charles de Gaulle - √âtoile", 25, 30, 7);
+        Station station6 = new Station(6, "Charles de Gaulle - Etoile", 25, 30, 7);
         Station station7 = new Station(7, "Place de Clichy", 30, 25, 3);
-        Station station8 = new Station(8, "Jaur√®s", 30, 20, 8);
+        Station station8 = new Station(8, "Jaures", 30, 20, 8);
         Station station9 = new Station(9, "Belleville", 30, 30, 8);
         Station station10 = new Station(10, "Nation", 30, 40, 2);
         listeStations.ajouterStation(station5);
@@ -105,9 +107,9 @@ public class Main {
 
         Ligne ligne3 = new Ligne(3, "ligne 3");
         Station station11 = new Station(11, "Gambetta", 50, 50, 4);
-        Station station12 = new Station(12, "B√©con", 50, 55, 6);
+        Station station12 = new Station(12, "Bacon", 50, 55, 6);
         Station station13 = new Station(13, "Saint-Lazare", 55, 50, 1);
-        Station station14 = new Station(14, "Op√©ra", 60, 30, 8);
+        Station station14 = new Station(14, "Opera", 60, 30, 8);
         listeStations.ajouterStation(station11);
         listeStations.ajouterStation(station12);
         listeStations.ajouterStation(station13);
@@ -124,114 +126,106 @@ public class Main {
         ligne3.ajouterVoie(voie13);
         metro.ajouterLigne(ligne3);
 
-        /*for (Map.Entry<Integer, Ligne> en : metro.getTabLignes().entrySet()) {
-            Ligne ligne = en.getValue();
-            System.out.println(ligne.getNom());
-        }*/
+        /*
+         * for (Map.Entry<Integer, Ligne> en : metro.getTabLignes().entrySet())
+         * { Ligne ligne = en.getValue(); System.out.println(ligne.getNom()); }
+         */
+
+        listeUsers.afficherListeUsers();
+        Scanner sc = new Scanner(System.in);
+        Chemin chemin = new Chemin(0);
+        Station depart;
+        Station arrivee;
 
         System.out.println("Welcome to Paris!");
 
         System.out.println("\n\nQue souhaitez vous faire ? (Veuillez entrer le numéro correspondant)");
-        System.out.println("[1]: INSCRIPTION           \n");
-        System.out.println("[2]: CONNEXION             \n");
+        System.out.println("[1]: INSCRIPTION           ");
+        System.out.println("[2]: CONNEXION             ");
+        System.out.println("[6]: QUITTER");
         int selection = sc.nextInt();
+        switch (selection) {
+            case 1:
+                System.out.println("[1]: INSCRIPTION\n");
+                System.out.println("Veuillez entrer votre login : \n");
+                sc.nextLine();
+                String login = sc.nextLine();
+                System.out.println("Veuillez entrer votre mot de passe : \n");
+                sc.nextLine();
+                String mdp = sc.nextLine();
+                System.out.println("\nVeuillez choisir vos preferences : ");
+                System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide ");
+                System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
+                int choix = sc.nextInt();
+                Utilisateur u = new Utilisateur(login,mdp,choix);
+                u.Inscription(listeUsers,login,mdp,choix);
+                listeUsers.afficherListeUsers();
 
-
-        
-        switch(selection){
-                case 1:
-                    System.out.println("[1]: INSCRIPTION\n");
-                    System.out.println("Veuillez entrer votre login : \n");
-                    sc.nextLine();
-                    String login = sc.nextLine();
-                    System.out.println("Veuillez entrer votre mot de passe : \n");
-                    sc.nextLine();
-                    String mdp = sc.nextLine();
-                    sc.nextLine();
-                    System.out.println("\nVeuillez choisir vos preferences : ");
-                    System.out.println("Tapez 1 si vous souhaitez le chemin le plus rapide ");
-                    System.out.println("Tapez 0 si vous souhaitez le moins de changements possibles");
-                    int choix = sc.nextInt();
-                    Utilisateur u = new Utilisateur(login,mdp,choix);
-                    u.Inscription(listeUsers,login,mdp,choix);
-                    listeUsers.afficherListeUsers();
-                   
                 break;
 
-                case 2:
-                    System.out.println("[2]: CONNEXION\n");
-                    System.out.println("Veuillez entrer votre login : \n");
-                    sc.nextLine();
-                    String login2 = sc.nextLine();
-                    System.out.println("Veuillez entrer votre mot de passe : \n");
-                    sc.nextLine();
-                    String mdp2 = sc.nextLine();
-                    Utilisateur u2 = new Utilisateur(login2,mdp2);
-                    
-                    u2.Connexion(listeUsers);
-                    System.out.print("Vous préférez le chemin : "+u2.getPreferenceChemin());
-                     
-                             
-        metro.afficherTabLignes();
-        metro.afficherDetailsLignes();
-        listeStations.afficherListeStations();
-
-        user.emplacementCourant();
-
-        //a refaire selon les coordonn√©es entr√©es
-        depart = station1;
-        arrivee = station2;
-
-        //chemin=CheminMinStation.algoRecherche(depart, arrivee);
-        //afficherChemin(chemin);
-        
-        //user.stationPlusProche(metro);
-        //user.troisPlusProches(metro);
-
-        Station dep = station1;
-        Station arr = station4;
-        System.out.println("Dijkstra");
-        AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
-        ArrayList<Tache> res = a.resoudre();
-        for (int i = 0; i < res.size(); i++) {
-            Tache tache = res.get(i);
-            System.out.println(tache.getTache().getNom());
+            case 2:
+                System.out.println("[2]: CONNEXION\n");
+                System.out.println("Veuillez entrer votre login : ");
+                sc.nextLine();
+                String login2 = sc.nextLine();
+                System.out.println("Veuillez entrer votre mot de passe : ");
+                sc.nextLine();
+                String mdp2 = sc.nextLine();
+                Utilisateur u2 = new Utilisateur(login2, mdp2);
+                u2.Connexion(listeUsers);
+                //System.out.println("Vous préférez le chemin : " + u2.getPreferenceChemin());
+                break;
+            case 6:
+                System.out.println("Merci et à bientôt");
+                break;
+            default:
+                System.out.print("mauvais choix");
         }
-                    
-                 break;
-                 case 6:
-                    System.out.println("Merci et à Bientot");
-                 break;
-                 default : System.out.print("mauvais choix");
-            }
-        
-
-
-         
-        metro.afficherTabLignes();
-        metro.afficherDetailsLignes();
-        listeStations.afficherListeStations();
 
         user.emplacementCourant();
 
-        //a refaire selon les coordonn√©es entr√©es
-        depart = station1;
-        arrivee = station2;
+        while (true) {
+            System.out.println("Menu");
+            System.out.println("[1]: Liste des lignes");
+            System.out.println("[2]: Liste des stations");
+            System.out.println("[3]: Afficher les 3 stations les plus proches");
+            System.out.println("[4]: Itinéraire franchissant le moins de station possible");
+            System.out.println("[5]: Itinéraire en temps le plus court");
+            int selection2 = sc.nextInt();
+            switch (selection2) {
+                case 1:
+                    metro.afficherTabLignes();
+                    metro.afficherDetailsLignes();
+                    break;
+                case 2:
+                    listeStations.afficherListeStations();
+                    break;
+                case 3:
+                    System.out.println("3 stations les plus proches : ");
+                    ArrayList<Station> stations = user.listeStations(metro);
+                    user.stationsPlusProches(metro, stations, 1);
+                    break;
+                case 4:
+                    //a refaire selon les coordonnées entrées
+                    depart = station1;
+                    arrivee = station2;
 
-        //chemin=CheminMinStation.algoRecherche(depart, arrivee);
-        //afficherChemin(chemin);
-        
-        //user.stationPlusProche(metro);
-        //user.troisPlusProches(metro);
-
-        Station dep = station1;
-        Station arr = station4;
-        System.out.println("Dijkstra");
-        AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
-        ArrayList<Tache> res = a.resoudre();
-        for (int i = 0; i < res.size(); i++) {
-            Tache tache = res.get(i);
-            System.out.println(tache.getTache().getNom());
+                    //chemin=CheminMinStation.algoRecherche(depart, arrivee);
+                    //afficherChemin(chemin);
+                    break;
+                case 5:
+                    Station dep = station1;
+                    Station arr = station4;
+                    System.out.println("Dijkstra");
+                    AlgorithmeDijkstra a = new AlgorithmeDijkstra(dep, arr, metro);
+                    ArrayList<Tache> res = a.resoudre();
+                    for (int i = 0; i < res.size(); i++) {
+                        Tache tache = res.get(i);
+                        System.out.println(tache.getTache().getNom());
+                    }
+                default:
+                    break;
+            }
         }
     }
 }
